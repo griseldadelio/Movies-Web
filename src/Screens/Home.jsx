@@ -1,13 +1,17 @@
 import React from 'react';
-import { Nav } from '../components'
+import { NavAuth } from '../components'
 import { Footer } from '../components/Footer';
-import SearchBar from '../components/SearchBar';
+import { SearchBar } from '../components/SearchBar';
+import { Intro } from '../components/Intro';
+import { NavGuest } from '../components/NavGuest';
 
 export const Home = () => {
     return (
         <>
-            <Nav />
+            {/* <NavAuth /> */}
+            <NavGuest />
             <SearchBar />
+            <Intro />
             <Footer />
         </>
     )

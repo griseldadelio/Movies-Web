@@ -1,0 +1,14 @@
+@media (max-width: 960px){
+    .cardlistpreview-container {
+        width: 100%;
+        left: 0;
+        height: 550px;
+    }
+}
+
+.cardlistpreview-container {
+    padding-top: 35px;
+    position: relative;
+    width: calc(100vw - 100px);
+    height: 620px;
+}
