@@ -27,7 +27,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className={`main-searchbar-container ${theme}`}>
+    <div className={`main-searchbar-container text-white ${theme}`}>
       <div className={`search-container ${searchVisible && "visible"} ${theme}`} >
         <div className={`close-options-container ${theme}`}>
           <form className={`options-container ${theme}`} onClick={(event) => handleMediaClick(event)} >
@@ -57,4 +57,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export { SearchBar }
