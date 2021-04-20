@@ -10,7 +10,7 @@ const Footer = () => {
             <div className=" m-3">
                 <div className="text-start pt-2 w-100">
                     <small>  © {year} Designed and built by De Lio Griselda . All rights reserved. <br />
-                        <text>
+                        <p>
                             Data provided by{" "}
                             <Link
                                 className='color-link'
@@ -18,7 +18,7 @@ const Footer = () => {
                                 href="https://www.themoviedb.org/">
                                 TMDb.
                                 </Link>
-                        </text>
+                        </p>
                     </small>
                 </div>
                 <Link className="size" to={"https://github.com/griseldadelio"}>

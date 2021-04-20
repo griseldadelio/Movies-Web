@@ -38,8 +38,6 @@ const getSearch = async (query) => {
     return data.results;
 };
 
-// const getCategory=async (media,category,page)=>{
-// const data=await api.get(/media/category)
-// }
+
 export const movie = { getPopular, getPopularData, getTopRated, getNewMovies, getId, getVid, getSearch };
 

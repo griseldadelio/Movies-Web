@@ -1,18 +1,32 @@
-import React from 'react';
-import { NavAuth } from '../components'
-import { Footer } from '../components/Footer';
-import { SearchBar } from '../components/SearchBar';
-import { Intro } from '../components/Intro';
-import { NavGuest } from '../components/NavGuest';
+import React, { useContext } from "react";
+import { CardListPreview, Intro, NavAuth, Footer } from "../components";
 
-export const Home = () => {
+import DataContext from "../contexts/DataContext";
+import MovieContext from "../contexts/MovieContext";
+import TvShowContext from "../contexts/TvShowContext";
+import ThemeContext from "../contexts/ThemeContext";
+
+import '../styles/main.css';
+
+const Home = () => {
+    const { theme } = useContext(ThemeContext);
+    const { data, year, voteAverage, mediatype, isLoading } = useContext(DataContext);
+    const { movie, isLoadingMovie } = useContext(MovieContext);
+    const { tvShow, isLoadingTvShow } = useContext(TvShowContext);
+
     return (
         <>
-            {/* <NavAuth /> */}
-            <NavGuest />
-            <SearchBar />
-            <Intro />
+            <NavAuth />
+            {!isLoading && !isLoadingMovie && !isLoadingTvShow && data && (
+                <div className={`main-container ${theme}`}>
+                    <Intro data={data} year={year} voteAverage={voteAverage} mediatype={mediatype} />
+                    <CardListPreview mediatype="movie" data={movie} sectionTitle="Trending Movies" category="popular" isFavs={false} />
+                    <CardListPreview mediatype="tv" data={tvShow} sectionTitle="Trending TV Shows" category="popular" isFavs={false} />
+                </div>
+            )}
             <Footer />
         </>
-    )
-}
+    );
+};
+
+export { Home };

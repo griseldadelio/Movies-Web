@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-// import * as Icon from 'react-bootstrap-icons';
+import * as Icon from 'react-bootstrap-icons';
 import '../styles/votes.css'
 import { AverageVote } from "./AverageVote";
 import ThemeContext from "../contexts/ThemeContext";
@@ -22,7 +22,7 @@ const Votes = ({ contentName, voteAverage, ...props }) => {
         </span>
       </>)
       }
-      {/* {!isVotingNumberVisible && (<><Icon.EyeFill /><span>Show rating</span></>)} */}
+      {!isVotingNumberVisible && (<><Icon.EyeFill /><span>&nbsp;Show rating</span></>)}
     </div>
   );
 };

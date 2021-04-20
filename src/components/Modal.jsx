@@ -7,7 +7,7 @@ const Modal = ({ text }) => {
     <>
       <div className="background-blurred" />
       <div className={`modal-container`}>
-        <text className={`modal-text`}>{text}</text>
+        <p className={`modal-text`}>{text}</p >
       </div>
     </>
   );

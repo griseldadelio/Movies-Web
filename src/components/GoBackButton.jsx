@@ -15,7 +15,7 @@ const GoBackButton = () => {
     <div className={` ${theme}`}>
       <button onClick={handleGoBackClick} className={` ${theme}`}>
         <Icon.ArrowLeft className={`${theme}`} aria-hidden="true" />
-        <text className={`${theme}`}>Go Back</text>
+        <p className={`${theme}`}>Go Back</p>
       </button>
     </div>
   );
