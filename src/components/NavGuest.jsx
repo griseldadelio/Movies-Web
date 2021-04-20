@@ -40,15 +40,15 @@ const NavGuest = () => {
           <LogoNav />
           <NavLink to="/" className="container" active ClassName="selected exact" >
             <Icon.HouseDoorFill className={`nav-icon ${theme}`} title={"Home"} onClick={handleToggle} aria-hidden="true" />
-            <text className={`nav-text ${theme}`}>Home</text>
+            <p className={`nav-text ${theme}`}>Home</p>
           </NavLink>
           <NavLink to="/movie" exact className="container" activeClassName="selected" >
             <Icon.Film className={`nav-icon ${theme}`} title={"Movie"} onClick={handleToggle} aria-hidden="true" />
-            <text className={`nav-text ${theme}`}>Movies</text>
+            <p className={`nav-text ${theme}`}>Movies</p>
           </NavLink>
           <NavLink to="/tv" exact className="container" activeClassName="selected">
             <Icon.TvFill className={`nav-icon ${theme}`} title={"Tv Series"} onClick={handleToggle} aria-hidden="true" />
-            <text className={`nav-text ${theme}`}>TV Shows</text>
+            <p className={`nav-text ${theme}`}>TV Shows</p>
           </NavLink>
           <div className="container"
             onClick={(event) => {
@@ -61,13 +61,13 @@ const NavGuest = () => {
             }}
           >
             <Icon.Search className={`nav-icon ${theme}`} title={"Search"} aria-hidden="true" />
-            <text className={`nav-text ${theme}`}>Search</text>
+            <p className={`nav-text ${theme}`}>Search</p>
           </div>
         </div>
         <div className="user-options">
           <NavLink to="/login" exact className="container" activeClassName="selected">
             <Icon.BoxArrowRight className={`nav-icon ${theme}`} title={"LogIn"} aria-hidden="true" />
-            <text className={`nav-text ${theme}`}>LogIn</text>
+            <p className={`nav-text ${theme}`}>LogIn</p>
           </NavLink>
           <ThemeToggle
             onClick={(event) => {

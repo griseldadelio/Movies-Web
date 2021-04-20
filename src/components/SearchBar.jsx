@@ -31,7 +31,7 @@ const SearchBar = () => {
       <div className={`search-container ${searchVisible && "visible"} ${theme}`} >
         <div className={`close-options-container ${theme}`}>
           <form className={`options-container ${theme}`} onClick={(event) => handleMediaClick(event)} >
-            <text className={`${theme}`}>Filter By</text>
+            <p className={`${theme}`}>Filter By</p>
             <div>
               <label className={`${theme}`}>
                 <input type="radio" name="mediatype" value="movie" className={`${theme}`} defaultChecked />

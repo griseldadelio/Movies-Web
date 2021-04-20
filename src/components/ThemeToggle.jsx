@@ -12,12 +12,12 @@ const ThemeToggle = ({ ...props }) => {
       {theme === "dark" ? (
         <>
           <LightOn className={`nav-icon ${theme}`} title={"Change the theme"} aria-hidden="true" />
-          <text className={`nav-text ${theme}`}>Light Mode</text>
+          <p className={`nav-text ${theme}`}>Light Mode</p>
         </>
       ) : (
           <>
             <LightOff className={`nav-icon ${theme}`} title={"Change the theme"} aria-hidden="true" />
-            <text className={`nav-text ${theme}`}>Dark Mode</text>
+            <p className={`nav-text ${theme}`}>Dark Mode</p>
           </>
         )}
     </div>

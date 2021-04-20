@@ -21,34 +21,34 @@ const Intro = ({ data, year, voteAverage, mediatype }) => {
                 <header className="intro-container">
                     <div className="intro-image-container" id={data.id}>
                         {data.backdrop_path && (
-                            <image className="intro-background-image" src={`${imageBaseUrl}${data.backdrop_path}`} alt="Movie background image" />
+                            <img className="intro-background-image" src={`${imageBaseUrl}${data.backdrop_path}`} alt="Movie background image" />
                         )}
                     </div>
                     <div className="intro-info">
-                        <bold>
+                        <b>
                             <h2 onClick={goToInfo}>
                                 {mediatype === "movie" ? data.title : data.name}
                             </h2>
-                        </bold>
+                        </b>
+                        <Votes contentName={data.title} voteAverage={voteAverage} />
                         <div className="intro-details-container">
-                            <Votes contentName={data.title} voteAverage={voteAverage} />
                             <span className="intro-details">
-                                <text>{data.vote_count}</text> <text>Reviews</text>
+                                <p> Reviews</p> <p className='p-1'>{data.vote_count}</p>
                             </span>
                             {year && (
                                 <span className="intro-details">
-                                    <text>{year}</text>
+                                    <p>{year}</p>
                                 </span>
                             )}
                             <span className="intro-details">
-                                <text>Popularity:vcb dhvbd</text> <text>{data.popularity}</text>
+                                <p>Popularity:</p> <p className='p-1'>{data.popularity}</p>
                             </span>
                         </div>
-                        <text className="intro-description">{data.overview}</text>
+                        <p className="intro-description">{data.overview}</p>
                         <Link to={`/video/${mediatype}/${data.id}`}>
                             <button className={`button ${theme}`}>
-                                <Icon.PlayCircleFill />
-                                <text>Watch Video</text>
+                                <Icon.PlayCircle className='icon-play' />
+                                <h5 className='p-2' >Watch Video</h5>
                             </button>
                         </Link>
                     </div >

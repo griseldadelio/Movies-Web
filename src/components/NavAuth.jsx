@@ -1,16 +1,16 @@
-import React, { useContext, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 
-import '../styles/nav.css'
-import { LogoNav } from "./LogoNav";
-import { ThemeToggle } from "./ThemeToggle";
+import { LogoNav } from './LogoNav';
+import { ThemeToggle } from './ThemeToggle';
 import { Modal } from './Modal'
 
-import firebase from "../configs/firebase";
+import firebase from '../configs/firebase';
+import '../styles/nav.css'
 
-import ThemeContext from "../contexts/ThemeContext";
-import SearchContext from "../contexts/SearchContext";
+import ThemeContext from '../contexts/ThemeContext';
+import SearchContext from '../contexts/SearchContext';
 
 
 const NavAuth = () => {
@@ -20,7 +20,7 @@ const NavAuth = () => {
     const [modal, setModal] = useState(false);
 
     const handleLogout = (event) => {
-        if (event.key === "Enter" || event.type === "click") {
+        if (event.key === 'Enter' || event.type === 'click') {
             setModal(true);
 
             setTimeout(() => firebase.auth().signOut(), 1000);
@@ -29,42 +29,42 @@ const NavAuth = () => {
     };
 
     const handleToggle = (event) => {
-        if (event.key === "Enter" || event.type === "click") {
+        if (event.key === 'Enter' || event.type === 'click') {
             setNoShow(!noShow);
         }
     };
 
     return (
         <>
-            {modal && <Modal text="You have logged off successfully!" />}
+            {modal && <Modal text='You have logged off successfully!' />}
             <nav className={`responsive-nav ${theme}`}>
-                <Link className="responsive-nav-link"
+                <Link className='responsive-nav-link'
                     onClick={(event) => handleToggle(event)}
                     onKeyDown={(event) => handleToggle(event)} >
-                    <Icon.List className={`nav-icon ${theme}`} aria-hidden="true" />
+                    <Icon.List className={`nav-icon ${theme}`} aria-hidden='true' />
                 </Link>
-                <Link className={`responsive-nav-link nav-close-icon ${noShow && "set-show-close"}`}
+                <Link className={`responsive-nav-link nav-close-icon ${noShow && 'set-show-close'}`}
                     onClick={(event) => handleToggle(event)}
                     onKeyDown={(event) => handleToggle(event)} >
-                    <Icon.X className={`nav-icon ${theme}`} aria-hidden="true" />
+                    <Icon.X className={`nav-icon ${theme}`} aria-hidden='true' />
                 </Link>
             </nav>
-            <nav className={`aside ${theme} ${noShow && "set-show-nav"}`}>
-                <div className="nav-links">
+            <nav className={`aside ${theme} ${noShow && 'set-show-nav'}`}>
+                <div className='nav-links'>
                     <LogoNav />
-                    <NavLink to="/" className="container" activeClassName="selected" exact >
-                        <Icon.HouseDoorFill className={`nav-icon ${theme}`} title={"Home"} onClick={handleToggle} aria-hidden="true" />
-                        <text className={`nav-text ${theme}`}>Home</text>
+                    <NavLink to='/' className='container' activeClassName='selected' exact >
+                        <Icon.HouseDoorFill className={`nav-icon ${theme}`} title={'Home'} onClick={handleToggle} aria-hidden='true' />
+                        <p className={`nav-text ${theme}`}>Home</p>
                     </NavLink>
-                    <NavLink to="/movie" exact className="container" activeClassName="selected">
-                        <Icon.Film className={`nav-icon ${theme}`} title={"Movie"} onClick={handleToggle} aria-hidden="true" />
-                        <text className={`nav-text ${theme}`}>Movies</text>
+                    <NavLink to='/movie' exact className='container' activeClassName='selected'>
+                        <Icon.Film className={`nav-icon ${theme}`} title={'Movie'} onClick={handleToggle} aria-hidden='true' />
+                        <p className={`nav-text ${theme}`}>Movies</p>
                     </NavLink>
-                    <NavLink to="/tv" exact className="container" activeClassName="selected" >
-                        <Icon.TvFill className={`nav-icon ${theme}`} title={"Tv Series"} onClick={handleToggle} aria-hidden="true" />
-                        <text className={`nav-text ${theme}`}>TV Shows</text>
+                    <NavLink to='/tv' exact className='container' activeClassName='selected' >
+                        <Icon.TvFill className={`nav-icon ${theme}`} title={'Tv Series'} onClick={handleToggle} aria-hidden='true' />
+                        <p className={`nav-text ${theme}`}>TV Shows</p>
                     </NavLink>
-                    <div className="container" onClick={(event) => {
+                    <div className='container' onClick={(event) => {
                         handleSearchBarVisible(event);
                         handleToggle(event);
                     }}
@@ -72,15 +72,15 @@ const NavAuth = () => {
                             handleSearchBarVisible(event);
                             handleToggle(event);
                         }}>
-                        <Icon.Search className={`nav-icon ${theme}`} title={"Search"} aria-hidden="true" />
-                        <text className={`nav-text ${theme}`}>Search</text>
+                        <Icon.Search className={`nav-icon ${theme}`} title={'Search'} aria-hidden='true' />
+                        <p className={`nav-text ${theme}`}>Search</p>
                     </div>
-                    <NavLink to="/favs" exact className="container" activeClassName="selected">
-                        <Icon.HeartFill className={`nav-icon ${theme}`} title={"Favorites"} onClick={handleToggle} title={"Favs"} aria-hidden="true" />
-                        <text className={`nav-text ${theme}`}>Favs</text>
+                    <NavLink to='/favs' exact className='container' activeClassName='selected'>
+                        <Icon.HeartFill className={`nav-icon ${theme}`} onClick={handleToggle} title={'Favs'} aria-hidden='true' />
+                        <p className={`nav-text ${theme}`}>Favs</p>
                     </NavLink>
                 </div>
-                <div className="user-options">
+                <div className='user-options'>
                     <Link onClick={(event) => {
                         handleLogout(event);
                         handleToggle(event);
@@ -89,9 +89,9 @@ const NavAuth = () => {
                             handleLogout(event);
                             handleToggle(event);
                         }}
-                        className="container">
-                        <Icon.BoxArrowRight className={`nav-icon ${theme}`} title={"Logout"} aria-hidden="true" />
-                        <text className={`nav-text ${theme}`}>Logout</text>
+                        className='container'>
+                        <Icon.BoxArrowRight className={`nav-icon ${theme}`} title={'Logout'} aria-hidden='true' />
+                        <p className={`nav-text ${theme}`}>Logout</p>
                     </Link>
 
                     <ThemeToggle
