@@ -1,11 +1,12 @@
-import React, { useContext, useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useRef, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import { Row } from 'react-bootstrap';
-import { Card } from "./Card";
+// import Flickity from 'react-flickity-component';
+import { Card } from './Card';
 import '../styles/cardListPreview.css'
-import ThemeContext from "../contexts/ThemeContext";
-import FavsContext from "../contexts/FavsContext";
+import ThemeContext from '../contexts/ThemeContext';
+import FavsContext from '../contexts/FavsContext';
 
 const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) => {
     const { theme } = useContext(ThemeContext);
@@ -51,8 +52,8 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) =>
         data && favsArray && (
             <div className={` cardlistpreview-container ${theme} `} forwarderRef={mediaContainerRef}>
                 {showLeftBar && (
-                    <button className={`${theme} `} onClick={() => handleLeftChevronClick(widthScreen)}>
-                        <Icon.ChevronLeft className={`${theme} `} />
+                    <button className={`chevron-container chevron-left ${theme} `} onClick={() => handleLeftChevronClick(widthScreen)}>
+                        <Icon.ChevronLeft className={`chevron-icon ${theme} `} />
                     </button>
                 )}
                 <Row>
@@ -65,29 +66,31 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) =>
                         </Link>
                     )}
                 </Row>
-                <div className={` ${theme}`} id="media-container" forwarderRef={mediaRef} >
-                    {data &&
-                        favsArray &&
-                        data.map((singleCard) => (
-                            <Card key={singleCard.id}
-                                cardInfo={{
-                                    id: singleCard.id,
-                                    src: !isFavs ? singleCard.poster_path : singleCard.src,
-                                    title: !isFavs
-                                        ? mediatype === "tv"
-                                            ? singleCard.name
-                                            : singleCard.title
-                                        : singleCard.title,
-                                    votes: !isFavs ? singleCard.vote_average : singleCard.votes,
-                                    mediatype: mediatype,
-                                    like: isFavs ? true : favsArray.includes(singleCard.id),
-                                }}
-                            />
-                        ))}
+                {/* Flickyti aca  */}
+
+                <div className={`media-container ${theme}`} id='media-container' forwarderRef={mediaRef} >
+                    {data && favsArray && data.map((singleCard) => (
+                        <Card key={singleCard.id}
+                            cardInfo={{
+                                id: singleCard.id,
+                                src: !isFavs ? singleCard.poster_path : singleCard.src,
+                                title: !isFavs
+                                    ? mediatype === 'tv'
+                                        ? singleCard.name
+                                        : singleCard.title
+                                    : singleCard.title,
+                                votes: !isFavs ? singleCard.vote_average : singleCard.votes,
+                                mediatype: mediatype,
+                                like: isFavs ? true : favsArray.includes(singleCard.id),
+                            }}
+                        />
+                    ))}
                 </div>
+
+
                 {showRightBar && (
-                    <button className={` ${theme} `} onClick={() => handleRightChevronClick(widthScreen, scrollWidth)}>
-                        <Icon.ChevronRight className={` ${theme} `} />
+                    <button className={`chevron-container ${theme} `} onClick={() => handleRightChevronClick(widthScreen, scrollWidth)}>
+                        <Icon.ChevronLeft className={` ${theme} `} />
                     </button>
                 )}
             </div>

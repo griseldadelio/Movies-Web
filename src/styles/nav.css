@@ -26,8 +26,9 @@ a {
     transition: 0.3s;
     color: #d3d6d0;
     cursor: pointer;
-    font-size: 40px;
+    font-size: 30px;
 }
+
 .responsive-nav .nav-close-icon {
     transform: translateX(0px);
     transition: 0.3s ease-in;
@@ -39,7 +40,7 @@ a {
 
 .aside {
     width: 100px;
-    border-right: 2px solid #3c8581;
+    border-right: 2px solid #2196F8;
     height: 100%;
     min-height: 100vh;
     z-index: 999;
@@ -72,8 +73,8 @@ a {
     padding: 5px;
 }
 
-.container.selected .nav-text {
-    color: #3fbac2;
+.container.selected .nav-text  {
+    color:#2196F8c2;
 }
 
 .container .nav-text {

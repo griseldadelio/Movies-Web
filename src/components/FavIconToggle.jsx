@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 import * as Icon from 'react-bootstrap-icons'
-import { db } from "../configs/firebase";
+import { db } from '../configs/firebase';
 
-import UserContext from "../contexts/UserContext";
-import FavsContext from "../contexts/FavsContext";
-import ThemeContext from "../contexts/ThemeContext";
+import UserContext from '../contexts/UserContext';
+import FavsContext from '../contexts/FavsContext';
+import ThemeContext from '../contexts/ThemeContext';
 
 const FavIconToggle = ({ like, id, src, title, votes, mediatype }) => {
   const [fav, setFav] = useState(false);
@@ -19,7 +19,7 @@ const FavIconToggle = ({ like, id, src, title, votes, mediatype }) => {
     }
     setFav(true);
 
-    db.collection("Favs")
+    db.collection('Favs')
       .doc(user.email)
       .collection(`${mediatype}`)
       .add({
@@ -40,8 +40,8 @@ const FavIconToggle = ({ like, id, src, title, votes, mediatype }) => {
     setFav(false);
     like = false;
 
-    let selectedID = "";
-    db.collection("Favs")
+    let selectedID = '';
+    db.collection('Favs')
       .doc(user.email)
       .collection(`${mediatype}`)
       .get()
@@ -69,7 +69,7 @@ const FavIconToggle = ({ like, id, src, title, votes, mediatype }) => {
       return;
     }
 
-    db.collection("Favs")
+    db.collection('Favs')
       .doc(user.email)
       .collection(`${mediatype}`)
       .doc(id)

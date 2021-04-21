@@ -3,8 +3,8 @@
     animation: moveUp 0.5s ease-in-out;
     transition: top 0.3s;
     flex-shrink: 0;
-    padding: 20px 15px 65px;
-    color:  #3fbac2;
+    padding: 20px 15px ;
+    color: #999;
     text-align: end;
   }
 
@@ -20,9 +20,9 @@
   .size{
     font-size: 1.5rem;
     margin-right: 25px;
-    color: black;
+    color: #999;;
   }
 
   .color-link{
-    color: #3c8581;
+    color: white;
   }

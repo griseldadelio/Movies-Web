@@ -7,8 +7,70 @@
 }
 
 .cardlistpreview-container {
-    padding-top: 35px;
+    padding: 35px;
     position: relative;
     width: calc(100vw - 100px);
     height: 620px;
 }
+
+.cardlistpreview-container .media-container {
+    padding: 25px 0px 0px 0px;
+    margin: 25px 0 0 35px;
+    overflow: hidden;
+    width: 95%;
+    height: 90%;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-align: center;
+    scroll-behavior: smooth;
+    scroll-padding: 15px;
+}
+
+.chevron-container.chevron-right {
+    right: 0;
+}
+.chevron-container.chevron-left {
+    left: 0;
+}
+@media (max-width: 1260px){
+    .chevron-container {
+        top: 40px;
+    }
+}
+
+
+.chevron-container {
+    cursor: pointer;
+    position: absolute;
+    height: 80%;
+    width: 60px;
+    background-color: rgba(27, 38, 44, 0.8);
+    outline: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 120px;
+    z-index: 100;
+    border: none;
+    transition: 0.3s;
+}
+
+.chevron-container .chevron-icon {
+    transition: 0.3s ease-out;
+}
+
+@media (max-width: 960px){
+    .chevron-icon {
+        height: 30px;
+    }
+}
+
+.chevron-icon {
+    height: 40px;
+    font-weight: bold;
+    color: #e4eddb;
+}
+
