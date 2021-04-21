@@ -1,1 +1,9 @@
-export { Home } from './Home'
+export { Home } from './Home';
+export { Movies } from './Movies';
+export { Movie } from './Movie';
+export { Categories } from './categories/Categories';
+export { CategorySimilar } from './categories/CategorySimilar';
+export { CardEpisodes } from './detail/CardEpisodes';
+export { Cast } from './detail/Cast';
+export { Episodes } from './detail/Episodes';
+export { Overview } from './detail/Overview';

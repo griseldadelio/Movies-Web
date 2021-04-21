@@ -1,2 +1,2 @@
 export { imageBaseUrl } from './ImageBaseUrl';
-export { API_KEY } from './APY_KEY';
+export { API_KEY } from './API_KEY';

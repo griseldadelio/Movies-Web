@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { API_KEY } from '../utils/APY_KEY';
+import { API_KEY } from '../utils/API_KEY';
 import { useFetch } from '../hooks/useFetch';
 
 const DataContext = createContext();

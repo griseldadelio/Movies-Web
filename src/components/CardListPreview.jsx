@@ -50,7 +50,7 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) =>
 
     return (
         data && favsArray && (
-            <div className={` cardlistpreview-container ${theme} `} forwarderRef={mediaContainerRef}>
+            <div className={` cardlistpreview-container ${theme} `} ref={mediaContainerRef}>
                 {showLeftBar && (
                     <button className={`chevron-container chevron-left ${theme} `} onClick={() => handleLeftChevronClick(widthScreen)}>
                         <Icon.ChevronLeft className={`chevron-icon ${theme} `} />
@@ -66,7 +66,7 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) =>
                         </Link>
                     )}
                 </Row>
-                {/* Flickyti aca  */}
+                {/* <Flickity></Flickity> */}
 
                 <div className={`media-container ${theme}`} id='media-container' forwarderRef={mediaRef} >
                     {data && favsArray && data.map((singleCard) => (
@@ -89,8 +89,8 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) =>
 
 
                 {showRightBar && (
-                    <button className={`chevron-container ${theme} `} onClick={() => handleRightChevronClick(widthScreen, scrollWidth)}>
-                        <Icon.ChevronLeft className={` ${theme} `} />
+                    <button className={`chevron-container chevron-right ${theme} `} onClick={() => handleRightChevronClick(widthScreen, scrollWidth)}>
+                        <Icon.ChevronRight className={`chevron-icon ${theme} `} />
                     </button>
                 )}
             </div>
