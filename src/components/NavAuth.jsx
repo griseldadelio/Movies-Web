@@ -93,7 +93,6 @@ const NavAuth = () => {
                         <Icon.BoxArrowRight className={`nav-icon ${theme}`} title={'Logout'} aria-hidden='true' />
                         <p className={`nav-text ${theme}`}>Logout</p>
                     </Link>
-
                     <ThemeToggle
                         onClick={(event) => {
                             handleTheme(event);

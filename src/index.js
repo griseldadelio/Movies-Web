@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+import './styles/index.css'
+
 import { DataProvider } from './contexts/DataContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { MovieProvider } from './contexts/MovieContext';
@@ -10,7 +12,7 @@ import { PaginationProvider } from './contexts/PaginationContext';
 import { CategoryProvider } from './contexts/CategoryContext';
 import { UserProvider } from './contexts/UserContext';
 import { FavsProvider } from './contexts/FavsContext';
-import { SearchProvider } from './contexts/SearchContext'
+import { SearchProvider } from './contexts/SearchContext';
 
 
 ReactDOM.render(

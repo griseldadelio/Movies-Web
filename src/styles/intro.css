@@ -99,7 +99,7 @@
     border: none;
     margin: 0px 0px 0 0;
     border-radius: 10px;
-    background-color: #144d53;
+    background-color: rgb(15, 107, 182);
     color: #e4eddb;
     font-size: 1em;
     letter-spacing: 1px;
@@ -112,4 +112,14 @@
 .icon-play{
     width: 30px;
     font-size: 40px;
+    }
+
+.row{
+    margin-right: 0px !important; 
+    margin-left: 0px !important;
+   align-items: center;
 }
+
+.margin{
+    margin-right: 15px;
+ }

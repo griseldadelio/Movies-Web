@@ -10,7 +10,7 @@ const AverageVote = ({ voteAverage }) => {
         if (rating < 1) {
             stars = [...Array(5)].map(() => 'empty');
         } else {
-            stars = [...Array(rating)].map(() => "filled");
+            stars = [...Array(rating)].map(() => 'filled');
             if (rating < 5) {
                 stars.push(voteAverage % 2 !== 0 ? 'half' : 'empty')
             }

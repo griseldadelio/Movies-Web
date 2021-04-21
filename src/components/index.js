@@ -12,4 +12,7 @@ export { SearchBar } from "./SearchBar";
 export { Star } from "./Star";
 export { Votes } from "./Votes";
 export { ThemeToggle } from "./ThemeToggle";
+export { ScrollToTop } from './ScrollToTop';
+export { Pagination } from './Pagination';
+export { PageButton } from './PageButton';
 
