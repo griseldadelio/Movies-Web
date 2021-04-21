@@ -62,12 +62,17 @@ const DiscoverProvider = ({ children }) => {
   };
 
   const getFirstYear = (dataYears, mediaAdvance) => {
+    console.log(dataYears);
+    console.log(mediaAdvance);
     if (!dataYears) {
       return '';
     } else {
-      dataYears.results.filter((serie) =>
-        serie.first_air_date !== undefined && serie.first_air_date !== ''
-      )[0];
+      console.log(
+        dataYears.results.filter(
+          (serie) =>
+            serie.first_air_date !== undefined && serie.first_air_date !== ""
+        )[0]
+      );
       return mediaAdvance === 'movie'
         ? dataYears.results
           .filter((movie) =>

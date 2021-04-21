@@ -28,10 +28,10 @@
     scroll-padding: 15px;
 }
 
-.chevron-container.chevron-right {
+.chevron-right {
     right: 0;
 }
-.chevron-container.chevron-left {
+.chevron-left {
     left: 0;
 }
 @media (max-width: 1260px){
@@ -42,9 +42,10 @@
 
 
 .chevron-container {
+    margin-top: 25px;
     cursor: pointer;
     position: absolute;
-    height: 80%;
+    height: 57%;
     width: 60px;
     background-color: rgba(27, 38, 44, 0.8);
     outline: none;
@@ -58,10 +59,6 @@
     transition: 0.3s;
 }
 
-.chevron-container .chevron-icon {
-    transition: 0.3s ease-out;
-}
-
 @media (max-width: 960px){
     .chevron-icon {
         height: 30px;
@@ -72,5 +69,6 @@
     height: 40px;
     font-weight: bold;
     color: #e4eddb;
+    transition: 0.3s ease-out;
 }
 
