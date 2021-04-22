@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Home, Movies, Categories } from './Screens';
+import { Home, Movies, Categories, Video, Series, Shows } from './Screens';
 import firebase from './configs/firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -39,6 +39,9 @@ const App = () => {
         <Switch>
           <Route exact path="/:media/category/:category" component={Categories} />
           <Route exact path="/movie" component={Movies} />
+          <Route exact path="/video/:media/:id" component={Video} />
+          <Route exact path="/tv" component={Series} />
+          <Route path="/tv/:TVId" component={Shows} />
           <Route path='/' component={Home} />
         </Switch>
         <Footer />

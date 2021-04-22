@@ -7,3 +7,6 @@ export { CardEpisodes } from './detail/CardEpisodes';
 export { Cast } from './detail/Cast';
 export { Episodes } from './detail/Episodes';
 export { Overview } from './detail/Overview';
+export { Video } from './Video';
+export { Shows } from './Shows';
+export { Series } from './Series';
