@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { DoteLoader } from "react-spinners";
+import { DotLoader } from "react-spinners";
 import { css } from "@emotion/core";
 
 import { CardListPreview, Intro, ScrollToTop, } from "../components";
@@ -32,15 +32,15 @@ const Home = () => {
 
   return (
     <>
-      {/* {(isLoading || isLoadingMovie || isLoadingTvShow) && (
+      {(isLoading || isLoadingMovie || isLoadingTvShow) && (
         <div className={`${theme}`}>
           {theme === "dark" ? (
-            <DoteLoader css={overrideDark} size="100px" />
+            <DotLoader css={overrideDark} size="100px" />
           ) : (
-              <DoteLoader css={overrideLight} size="100px" />
+              <DotLoader css={overrideLight} size="100px" />
             )}
         </div>
-      )} */}
+      )}
       {!isLoading && !isLoadingMovie && !isLoadingTvShow && data && (
         <div className={`main-container ${theme}`}>
           <ScrollToTop />

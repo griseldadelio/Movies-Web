@@ -1,61 +1,37 @@
-import React, { useContext, useRef, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+import Flickity from 'react-flickity-component';
 import { Link } from 'react-router-dom';
-import * as Icon from 'react-bootstrap-icons';
 import { Row } from 'react-bootstrap';
-// import Flickity from 'react-flickity-component';
+
 import { Card } from './Card';
+
 import '../styles/cardListPreview.css'
+
 import ThemeContext from '../contexts/ThemeContext';
 import FavsContext from '../contexts/FavsContext';
 
 const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) => {
     const { theme } = useContext(ThemeContext);
     const { favsArray } = useContext(FavsContext);
-    const mediaRef = useRef(null);
-    const mediaContainerRef = useRef(null);
-    const [showLeftBar, setShowLeftBar] = useState(false);
-    const [showRightBar, setShowRightBar] = useState(true);
-    const [widthScreen, setWidthScreen] = useState(0);
-    const [scrollWidth, setScrollWidth] = useState(0);
-    const windowWidth = window.innerWidth;
 
-    const handleResize = () => {
-        setWidthScreen(window.innerWidth);
+    const flickityOptions = {
+        freeScroll: true,
+        contain: true,
+        cellAlign: 'left',
+        prevNextButtons: true,
+        pageDots: false,
+        freeScrollFriction: 0.2,
+        selectedAttraction: 0.01,
+        friction: 0.15,
+        groupCells: '100%',
+        resize: true,
     };
 
-    // useEffect(() => {
-    //     setWidthScreen(mediaContainerRef.current.scrollWidth);
-    //     setScrollWidth(mediaRef.current.scrollWidth);
-    //     window.addEventListener("resize", handleResize);
-    //     if (mediaContainerRef.current.scrollWidth > mediaRef.current.scrollWidth)
-    //         setShowRightBar(false);
-    // }, []);
-
-    const handleLeftChevronClick = (widthScreen) => {
-        if (windowWidth > 480) {
-            mediaRef.current.scrollLeft -= widthScreen - 20;
-            mediaRef.current.scrollLeft <= widthScreen && setShowLeftBar(false);
-            setShowRightBar(true);
-        }
-    };
-
-    const handleRightChevronClick = (widthScreen, scrollWidth) => {
-        mediaRef.current.scrollLeft += widthScreen - 120;
-        if (windowWidth > 480) {
-            mediaRef.current.scrollLeft >= scrollWidth - widthScreen * 2 &&
-                setShowRightBar(false);
-            setShowLeftBar(true);
-        }
-    };
+    let flkty = null;
 
     return (
         data && favsArray && (
-            <div className={` cardlistpreview-container ${theme} `} ref={mediaContainerRef}>
-                {showLeftBar && (
-                    <button className={`chevron-container chevron-left ${theme} `} onClick={() => handleLeftChevronClick(widthScreen)}>
-                        <Icon.ChevronLeft className={`chevron-icon ${theme} `} />
-                    </button>
-                )}
+            <div className={` cardlistpreview-container ${theme} `} >
                 <Row>
                     <h3 className={`${theme} `}>
                         {sectionTitle}
@@ -66,9 +42,7 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) =>
                         </Link>
                     )}
                 </Row>
-                {/* <Flickity></Flickity> */}
-
-                <div className={`media-container ${theme}`} id='media-container' forwarderRef={mediaRef} >
+                <Flickity classNam={`media-container ${theme}`} options={flickityOptions} flickityRef={(ref) => (flkty = ref)}>
                     {data && favsArray && data.map((singleCard) => (
                         <Card key={singleCard.id}
                             cardInfo={{
@@ -85,15 +59,8 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) =>
                             }}
                         />
                     ))}
-                </div>
-
-
-                {showRightBar && (
-                    <button className={`chevron-container chevron-right ${theme} `} onClick={() => handleRightChevronClick(widthScreen, scrollWidth)}>
-                        <Icon.ChevronRight className={`chevron-icon ${theme} `} />
-                    </button>
-                )}
-            </div>
+                </Flickity>
+            </div >
         )
     );
 };

@@ -39,25 +39,38 @@
         top: 40px;
     }
 }
-
-
-.chevron-container {
-    margin-top: 25px;
-    cursor: pointer;
+.flickity-button {
+    display: block;
     position: absolute;
-    height: 57%;
-    width: 60px;
-    background-color: rgba(27, 38, 44, 0.8);
-    outline: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    top: 120px;
-    z-index: 100;
+    top: 0;
     border: none;
-    transition: 0.3s;
-}
+    width: 40px;
+    height: 100px;
+    background-color: rgba(0,0,0,0.5);
+    transition: all 0.25s ease;
+    fill: #fff;
+    z-index: 2;
+  }
+
+  .flickity-prev-next-button {
+    top: 40%;
+    width: 44px;
+    height: 305px;
+    transform: translateY(-50%);
+  }
+
+  .flickity-prev-next-button.previous {
+    left: 30px;
+  }
+  .flickity-prev-next-button.next {
+    right: 30px;
+  }
+
+  .flickity-button:disabled {
+    opacity: 0.1;
+    cursor: auto;
+    pointer-events: none;
+  }
 
 @media (max-width: 960px){
     .chevron-icon {
@@ -71,4 +84,10 @@
     color: #e4eddb;
     transition: 0.3s ease-out;
 }
+
+.flickity-viewport{
+    overflow: hidden;
+    cursor: grab;
+}
+
 
