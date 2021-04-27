@@ -3,11 +3,10 @@ import { useParams, Route, Switch, NavLink, useRouteMatch } from 'react-router-d
 import { useFetch } from '../hooks/useFetch';
 import { API_KEY } from '../utils/API_KEY';
 
-import { Intro, ScrollToTop } from '../components';
+import { Intro } from '../components';
 import { CategorySimilar, Overview, Episodes, Cast } from '.';
 
-import ThemeContext from '../contexts/ThemeContext';
-import TvShowContext from '../contexts/TvShowContext';
+import TvShowContext from '../contexts/TvShow/TvShowContext';
 
 const Shows = () => {
   const [tvShowID, setTvShowID] = useState([]);
@@ -18,7 +17,6 @@ const Shows = () => {
   const [castTV, setCastTV] = useState([]);
   const { TVId } = useParams();
   const { path, url } = useRouteMatch();
-  const { theme } = useContext(ThemeContext);
   const { seasonNumber } = useContext(TvShowContext);
 
   const dataJsonTVID = useFetch(
@@ -48,24 +46,23 @@ const Shows = () => {
 
   return (
     tvShowID && (
-      <div className={`main-container ${theme}`}>
-        <ScrollToTop />
+      <div className={`main-container`}>
         <Intro data={tvShowID} year={year} voteAverage={voteAverage} mediatype='tv' />
-        <div className={`nav-container ${theme}`}>
+        <div className={`nav-container`}>
           {' '}
-          <nav className={`${theme}`}>
-            <NavLink to={`${url}/info`} className={` ${theme}`} activeClassName='selected' >
+          <nav>
+            <NavLink to={`${url}/info`} activeClassName='selected' >
               OVERVIEW
             </NavLink>
-            <NavLink to={`${url}/season/${seasonNumber}`} className={` ${theme}`} activeClassName='selected' >
+            <NavLink to={`${url}/season/${seasonNumber}`} activeClassName='selected' >
               EPISODES
             </NavLink>
             {similarShows.length > 0 && (
-              <NavLink to={`${url}/similar`} className={` ${theme}`} activeClassName='selected'>
+              <NavLink to={`${url}/similar`} activeClassName='selected'>
                 SIMILAR
               </NavLink>
             )}
-            <NavLink to={`${url}/cast`} className={`${theme}`} activeClassName='selected' >
+            <NavLink to={`${url}/cast`} activeClassName='selected' >
               CAST
             </NavLink>
           </nav>

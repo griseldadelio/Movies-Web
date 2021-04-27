@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, NavLink, useRouteMatch, Switch, Route } from "react-router-dom";
 import { API_KEY } from '../utils/API_KEY';
 
 import { useFetch } from '../hooks/useFetch';
 import { Intro } from '../components';
 import { CategorySimilar, Overview, Cast } from '../Screens';
-import ThemeContext from '../contexts/ThemeContext';
 
 const Movie = () => {
   const [movieID, setMovieID] = useState([]);
@@ -15,7 +14,6 @@ const Movie = () => {
   const [movieCast, setMovieCast] = useState([]);
   const { movieId } = useParams();
   const { path, url } = useRouteMatch();
-  const { theme } = useContext(ThemeContext);
 
   const dataJsonMovieId = useFetch(
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`,
@@ -41,18 +39,18 @@ const Movie = () => {
 
   return (
     movieID && (
-      <div className={`main-container ${theme}`}>
+      <div className={`main-container`}>
         <Intro data={movieID} year={year} voteAverage={voteAverage} mediatype="movie" />
-        <div className={`nav-container ${theme}`}>
-          <nav className={`nav-tvShow ${theme}`}>
-            <NavLink to={`${url}/info`} className={`${theme}`} activeClassName="selected" >
+        <div className={`nav-container`}>
+          <nav className={`nav-tvShow `}>
+            <NavLink to={`${url}/info`} activeClassName="selected" >
               OVERVIEW
             </NavLink>
-            <NavLink to={`${url}/cast`} className={` ${theme}`} activeClassName="selected" >
+            <NavLink to={`${url}/cast`} activeClassName="selected" >
               CAST
             </NavLink>
             {similarMovies.length > 0 && (
-              <NavLink to={`${url}/similar`} className={` ${theme}`} activeClassName="selected" >
+              <NavLink to={`${url}/similar`} activeClassName="selected" >
                 SIMILAR
               </NavLink>
             )}

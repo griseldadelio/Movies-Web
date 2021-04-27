@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { API_KEY } from '../utils';
-import { useFetch } from '../hooks/useFetch';
+import { API_KEY } from '../../utils';
+import { useFetch } from '../../hooks/useFetch';
 
 const SearchContext = createContext();
 
@@ -46,6 +46,8 @@ const SearchProvider = ({ children }) => {
     `https://api.themoviedb.org/3/search/${!media ? "movie" : media}?api_key=${API_KEY}&language=en-US${inputValue && `&query=${inputValue}`}&page=${searchPage}`,
     [inputValue, media, searchPage, newSearch]
   );
+
+
 
   useEffect(() => {
     searchedData && setResults(searchedData.results);

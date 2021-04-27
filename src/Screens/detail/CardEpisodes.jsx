@@ -1,24 +1,21 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { imageBaseUrl } from '../../utils/ImageBaseUrl';
 
 import noImageFound from '../../assets/img/image-not-found-scaled-1150x647.png';
 
-import ThemeContext from '../../contexts/ThemeContext';
-
 const CardEpisodes = ({ src, episode, title, overview, date }) => {
-  const { theme } = useContext(ThemeContext);
 
   return (
     <article >
       <div >
-        <img src={src ? `${imageBaseUrl}${src}` : noImageFound} />
+        <img src={src ? `${imageBaseUrl}${src}` : noImageFound} alt='not found' />
       </div>
       <div >
-        <span className={`${theme}`}>{episode}</span>
-        <h3 className={`${theme}`}> {title} </h3>
+        <span>{episode}</span>
+        <h3> {title} </h3>
       </div>
-      <span className={`card-episode-overview ${theme}`}>{overview}</span>
-      <span className={`card-episode-date ${theme}`}>{date}</span>
+      <span className={`card-episode-overview`}>{overview}</span>
+      <span className={`card-episode-date`}>{date}</span>
     </article>
   );
 };

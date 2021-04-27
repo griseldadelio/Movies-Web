@@ -12,7 +12,7 @@ const Footer = () => {
                     <small>  © {year} Designed and built by De Lio Griselda . All rights reserved. <br />
                         <p>
                             Data provided by{' '}
-                            <Link className='color-link' target='_blank' href='https://www.themoviedb.org/'>
+                            <Link className='color-link' target='_blank' to='https://www.themoviedb.org/'>
                                 TMDb.
                             </Link>
                         </p>

@@ -1,16 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { imageBaseUrl } from '../../utils/ImageBaseUrl';
 
-import ThemeContext from '../../contexts/ThemeContext';
-
 const Overview = ({ data, mediatype }) => {
-  const { theme } = useContext(ThemeContext);
 
   return (
     data && mediatype && (
-      <div className={` ${theme}`}>
+      <div>
         <div >
-          <img src={`${imageBaseUrl}${data.poster_path}`} />
+          <img src={`${imageBaseUrl}${data.poster_path}`} alt='poster' />
         </div>
         <div>
           <div>

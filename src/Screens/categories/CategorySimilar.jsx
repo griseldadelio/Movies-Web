@@ -1,20 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Card } from '../../components';
 
-import ThemeContext from '../../contexts/ThemeContext';
-
 const CategorySimilar = ({ data, mediatype }) => {
-  const { theme } = useContext(ThemeContext);
 
   return (
     data && (
-      <div className={` ${theme}`}>
+      <div>
         <div>
-          <h2 className={`${theme} `}>
+          <h2>
             {mediatype === 'movie' ? 'Similar Movies' : 'Similar Shows'}
           </h2>
         </div>
-        <div className={`${theme}`}>
+        <div>
           {data &&
             data.map((singleCard) => (
               <Card

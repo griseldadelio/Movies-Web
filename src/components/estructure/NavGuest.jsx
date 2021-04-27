@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
-
 import '../styles/nav.css';
-import { LogoNav } from './LogoNav';
-
-import SearchContext from '../contexts/Search/SearchContext';
+import { LogoNav } from '../LogoNav';
+import SearchContext from '../../contexts/Search/SearchContext';
 
 const NavGuest = () => {
   const { handleSearchBarVisible } = useContext(SearchContext);
@@ -19,11 +17,26 @@ const NavGuest = () => {
 
   return (
     <>
+      <nav className={`responsive-nav `}>
+        <Link className='responsive-nav-link'
+          onClick={(event) => handleToggle(event)}
+          onKeyDown={(event) => handleToggle(event)} >
+          <Icon.List className={`nav-icon `} aria-hidden='true' />
+        </Link>
+        <Link
+          className={`responsive-nav-link nav-close-icon ${
+            noShow && 'set-show-close'
+            }`}
+          onClick={(event) => handleToggle(event)}
+          onKeyDown={(event) => handleToggle(event)}>
+          <Icon.X className={`nav-icon`} aria-hidden='true' />
+        </Link>
+      </nav>
       <nav className={`aside ${noShow && 'set-show-nav'}`}>
         <div className='nav-links'>
           <LogoNav />
-          <NavLink to='/' className='container' activeClassName='selected exact' >
-            <Icon.HouseDoorFill className={`nav-icon`} title={"Home"} onClick={handleToggle} aria-hidden='true' />
+          <NavLink to='/' className='container' active ClassName='selected exact' >
+            <Icon.HouseDoorFill className={`nav-icon `} title={"Home"} onClick={handleToggle} aria-hidden='true' />
             <p className={`nav-text`}>Home</p>
           </NavLink>
           <NavLink to='/movie' exact className='container' activeClassName='selected' >

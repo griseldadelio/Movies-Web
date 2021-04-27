@@ -7,11 +7,9 @@ import { Card } from './Card';
 
 import '../styles/cardListPreview.css'
 
-import ThemeContext from '../contexts/ThemeContext';
-import FavsContext from '../contexts/FavsContext';
+import FavsContext from '../contexts/Favorite/FavsContext';
 
 const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) => {
-    const { theme } = useContext(ThemeContext);
     const { favsArray } = useContext(FavsContext);
 
     const flickityOptions = {
@@ -31,18 +29,18 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, isFavs }) =>
 
     return (
         data && favsArray && (
-            <div className={` cardlistpreview-container ${theme} `} >
+            <div className={` cardlistpreview-container `} >
                 <Row>
-                    <h3 className={`${theme} `}>
+                    <h3>
                         {sectionTitle}
                     </h3>
                     {!isFavs && (
-                        <Link to={`${mediatype}/category/${category}`} className={`m-2 text-muted ${theme}`}>
+                        <Link to={`${mediatype}/category/${category}`} className={`m-2 text-muted`}>
                             Explore All
                         </Link>
                     )}
                 </Row>
-                <Flickity classNam={`media-container ${theme}`} options={flickityOptions} flickityRef={(ref) => (flkty = ref)}>
+                <Flickity classNam={`media-container`} options={flickityOptions} flickityRef={(ref) => (flkty = ref)}>
                     {data && favsArray && data.map((singleCard) => (
                         <Card key={singleCard.id}
                             cardInfo={{

@@ -4,14 +4,12 @@ import { API_KEY } from '../../utils/API_KEY';
 import { useFetch } from '../../hooks/useFetch';
 import { CardEpisodes } from './CardEpisodes';
 
-import ThemeContext from '../../contexts/ThemeContext';
-import TvShowContext from '../../contexts/TvShowContext';
+import TvShowContext from '../../contexts/TvShow/TvShowContext';
 
 const Episodes = ({ seasons }) => {
   const { TVId } = useParams();
   const [episodes, setEpisodes] = useState();
   const [episodesLength, setEpisodesLength] = useState(0);
-  const { theme } = useContext(ThemeContext);
   const { seasonNumber, setSeasonNumber } = useContext(TvShowContext);
   const history = useHistory();
 
@@ -34,18 +32,18 @@ const Episodes = ({ seasons }) => {
 
   return (
     seasons && TVId && (
-      <div className={`${theme}`}>
+      <div>
         <div>
-          <select className={` ${theme}`} onChange={handleChange} >
+          <select onChange={handleChange} >
             {seasons && seasons
               .filter((season) => season.name !== 'Specials')
               .map((season, index) => (
-                <option className={` ${theme}`} value={index + 1} key={season.id} id={season.id} >
+                <option value={index + 1} key={season.id} id={season.id} >
                   Season {index + 1}
                 </option>
               ))}
           </select>
-          <span className={`episodes-length ${theme}`}>
+          <span className={`episodes-length `}>
             {episodesLength} Episodes
           </span>
         </div>

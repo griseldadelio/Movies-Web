@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { API_KEY } from '../utils/API_KEY';
-import { useFetch } from '../hooks/useFetch';
+import { API_KEY } from '../../utils/API_KEY';
+import { useFetch } from '../../hooks/useFetch';
 
 const TvShowContext = createContext();
 
