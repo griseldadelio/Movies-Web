@@ -1,19 +1,11 @@
 import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-
-import { DoteLoader } from 'react-spinners';
-import { css } from '@emotion/core';
-
 import { Card, GoBackButton } from '../../components';
 
 import CategoryContext from '../../contexts/Category/CategoryContext';
 import FavsContext from '../../contexts/Favorite/FavsContext';
 
-const overrideDark = css`
-  & div {
-    background-color: #2196f3;
-  }
-`;
+import './style.css'
 
 const Categories = () => {
   const { media, category } = useParams();
@@ -32,21 +24,18 @@ const Categories = () => {
       <GoBackButton />
       {!isLoading && favsArray && (
         <>
-          <div>
-            <DoteLoader css={overrideDark} size='100' />
-          </div>
-          <div>
+          <div className='main-container'>
             <div>
-              <h2>
+              <h2 className='category-title-container'>
                 {media === 'movie' ? `${title2} movies` : `${title2} tv shows`}
               </h2>
             </div>
-            <div>
+            <div className='main-category-container'>
               {dataByParams.map((singleCard) =>
                 media === 'movie' && singleCard.name ? (
-                  <div>hola gri</div>
+                  <div className='main-category-container'></div>
                 ) : (
-                    <Card
+                    <Card key={singleCard.id}
                       cardInfo={{
                         id: singleCard.id,
                         src: singleCard.poster_path,

@@ -1,6 +1,5 @@
-import React, { createContext, useState, useEffect } from "react";
-import { API_KEY } from "../../utils/API_KEY";
-import { useFetch } from "../../hooks/useFetch";
+import React, { createContext, useState, useEffect } from 'react';
+import { api } from '../../utils'
 
 const DiscoverContext = createContext();
 
@@ -8,10 +7,8 @@ const DiscoverProvider = ({ children }) => {
   const [mediaAdvance, setMediaAdvance] = useState("movie");
   const [genres, setGenres] = useState([]);
   const [genresAdvance, setGenresAdvance] = useState("");
-  const [interval, setInterval] = useState("after");
   const [orderBy, setOrderBy] = useState("popularity.desc");
   const [discover, setDiscover] = useState([]);
-  const [discoverMaxPage, setDiscoverMaxPage] = useState(1000);
   const [discoverPage, setDiscoverPage] = useState(1);
 
   const areGenres = genresAdvance ? `&with_genres=${genresAdvance}` : "";
@@ -22,8 +19,6 @@ const DiscoverProvider = ({ children }) => {
 
   const handleGenreChange = (event) => setGenresAdvance(event.target.value);
 
-  const handleIntervalChange = (event) => setInterval(event.target.value);
-
 
 
   const handleOrderByChange = (event) => {
@@ -31,40 +26,50 @@ const DiscoverProvider = ({ children }) => {
   };
 
 
-  const dataGenres = useFetch(
-    `https://api.themoviedb.org/3/genre/${mediaAdvance}/list?api_key=${API_KEY}&language=en-US`,
-    [mediaAdvance]
-  );
+  const dataGenres = async () => {
+    const { data } = await api.get(`/genre/${mediaAdvance}/list?`, {
+      params: {
+        mediaAdvance
+      }
+    });
+    return data.results
+  }
 
-  const dataSortBy = useFetch(
-    `https://api.themoviedb.org/3/discover/${mediaAdvance}?api_key=${API_KEY}&language=en-US${areGenres}${
-    orderBy !== "original_name.asc" &&
-    orderBy !== "original_name.desc" &&
-    `&sort_by=${orderBy}`
-    }&page=${discoverPage}`,
-    [
-      areGenres,
-      mediaAdvance,
-      genresAdvance,
-      orderBy,
-      interval,
-      discoverPage,
-    ]
-  );
+
+  const dataSortBy = async () => {
+    const { data } = await api.get(`/discover/${mediaAdvance}?${areGenres}${
+      orderBy !== "original_name.asc" &&
+      orderBy !== "original_name.desc" &&
+      `&sort_by=${orderBy}`
+      }&page=${discoverPage}`, {
+      params: {
+        mediaAdvance,
+        areGenres,
+        orderBy,
+        discoverPage
+      }
+    });
+    return data.results
+  }
+
+
 
 
   useEffect(() => {
-    dataGenres && setGenres(dataGenres.genres);
-    dataGenres && setGenresAdvance(false);
-  }, [dataGenres])
+    dataGenres()
+      .then(response => {
+        setGenres(response);
+      })
+    setGenresAdvance(false);
+  }, [])
 
 
   useEffect(() => {
-    dataSortBy && setDiscover(dataSortBy.results);
-    dataSortBy && setDiscoverMaxPage(dataSortBy.total_pages);
-    dataSortBy && setDiscover(dataSortBy.results);
-    dataSortBy && setDiscoverMaxPage(dataSortBy.total_pages);
-  }, [dataSortBy, mediaAdvance]);
+    dataSortBy()
+      .then(response => {
+        setDiscover(response.results)
+      });
+  }, []);
 
 
   return (
@@ -72,17 +77,13 @@ const DiscoverProvider = ({ children }) => {
       value={{
         discover,
         genres,
-        interval,
         mediaAdvance,
         orderBy,
         genresAdvance,
-        discoverMaxPage,
         discoverPage,
-        handleIntervalChange,
         handleMediaChange,
         handleGenreChange,
         handleOrderByChange,
-        setDiscoverPage,
       }}
     >
       {children}

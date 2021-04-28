@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Route, Switch, NavLink, useRouteMatch } from 'react-router-dom';
-import { useFetch } from '../hooks/useFetch';
-import { API_KEY } from '../utils/API_KEY';
+import { api } from '../utils';
 
 import { Intro } from '../components';
 import { CategorySimilar, Overview, Episodes, Cast } from '.';
 
 import TvShowContext from '../contexts/TvShow/TvShowContext';
+import './style.css'
 
 const Shows = () => {
   const [tvShowID, setTvShowID] = useState([]);
@@ -19,30 +19,59 @@ const Shows = () => {
   const { path, url } = useRouteMatch();
   const { seasonNumber } = useContext(TvShowContext);
 
-  const dataJsonTVID = useFetch(
-    `https://api.themoviedb.org/3/tv/${TVId}?api_key=${API_KEY}`,
-    [TVId]
-  );
+  const dataJsonTVID = async () => {
+    const { data } = await api.get(`/tv/${TVId}?`, {
+      params: {
+        TVId
+      }
+    });
+    return data
+  }
 
-  const dataJsonSimilarShows = useFetch(
-    `https://api.themoviedb.org/3/tv/${TVId}/similar?api_key=${API_KEY}&language=en-US&page=1`,
-    [TVId]
-  );
+  const dataJsonSimilarShows = async () => {
+    const { data } = await api.get(`/tv/${TVId}/similar?`, {
+      params: {
+        TVId
+      }
+    });
+    return data.results
+  }
 
-  const dataCastTv = useFetch(
-    `https://api.themoviedb.org/3/tv/${TVId}/credits?api_key=${API_KEY}&language=en-US`,
-    [TVId]
-  );
+  const dataCastTv = async () => {
+    const { data } = await api.get(`/tv/${TVId}/credits?`, {
+      params: {
+        TVId
+      }
+    });
+    console.log(data)
+    return data.cast
+  }
 
   useEffect(() => {
-    dataJsonTVID && setTvShowID(dataJsonTVID);
-    dataJsonTVID && setVoteAverage(dataJsonTVID.vote_average);
-    dataJsonTVID && setYear(dataJsonTVID.first_air_date.split('-')[0]);
-    dataJsonTVID && setSeasons(dataJsonTVID.seasons);
-    dataJsonSimilarShows && setSimilarShows(dataJsonSimilarShows.results);
-    dataCastTv && setCastTV(dataCastTv.cast);
-  }, [dataJsonTVID, dataJsonSimilarShows, dataCastTv]);
+    dataJsonTVID()
+      .then(response => setTvShowID(response));
+    dataJsonTVID()
+      .then(response => setVoteAverage(response.vote_average));
+    dataJsonTVID()
+      .then(response => setYear(response.release_date));
+    dataJsonTVID()
+      .then((response) =>
+        setSeasons(response.seasons));
+  }, []);
 
+  useEffect(() => {
+    dataJsonSimilarShows()
+      .then(response => {
+        setSimilarShows(response)
+      })
+  }, []);
+
+  useEffect(() => {
+    dataCastTv()
+      .then(response => {
+        setCastTV(response)
+      })
+  }, []);
 
   return (
     tvShowID && (
@@ -50,19 +79,19 @@ const Shows = () => {
         <Intro data={tvShowID} year={year} voteAverage={voteAverage} mediatype='tv' />
         <div className={`nav-container`}>
           {' '}
-          <nav>
-            <NavLink to={`${url}/info`} activeClassName='selected' >
+          <nav className={`nav-tvShow `}>
+            <NavLink className='navlink' to={`${url}/info`} activeClassName='selected' >
               OVERVIEW
             </NavLink>
-            <NavLink to={`${url}/season/${seasonNumber}`} activeClassName='selected' >
+            <NavLink className='navlink' to={`${url}/season/${seasonNumber}`} activeClassName='selected' >
               EPISODES
             </NavLink>
             {similarShows.length > 0 && (
-              <NavLink to={`${url}/similar`} activeClassName='selected'>
+              <NavLink className='navlink' to={`${url}/similar`} activeClassName='selected'>
                 SIMILAR
               </NavLink>
             )}
-            <NavLink to={`${url}/cast`} activeClassName='selected' >
+            <NavLink className='navlink' to={`${url}/cast`} activeClassName='selected' >
               CAST
             </NavLink>
           </nav>

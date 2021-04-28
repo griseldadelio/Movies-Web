@@ -6,13 +6,13 @@ body {
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
-    font-family: "Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: "Karla", Verdana, Tahoma, sans-serif !important;
     color: #fafafa !important;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: none;
-    background-color: #141414 !important;
+    background-color: #1b262c !important;
 }
 
     

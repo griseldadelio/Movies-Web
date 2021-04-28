@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { API_KEY } from '../../utils/API_KEY';
-import { useFetch } from '../../hooks/useFetch';
+import { api } from '../../utils';
 import { CardEpisodes } from './CardEpisodes';
 
 import TvShowContext from '../../contexts/TvShow/TvShowContext';
@@ -13,15 +12,22 @@ const Episodes = ({ seasons }) => {
   const { seasonNumber, setSeasonNumber } = useContext(TvShowContext);
   const history = useHistory();
 
-  const dataJson = useFetch(
-    `https://api.themoviedb.org/3/tv/${TVId}/season/${seasonNumber}?api_key=${API_KEY}&language=en-US`,
-    [seasonNumber]
-  );
+  const dataJson = async () => {
+    const { data } = await api.get(`/tv/${TVId}/season/${seasonNumber}?`, {
+      params: {
+        TVId,
+        seasonNumber
+      }
+    });
+    return data.episodes
+  }
 
   useEffect(() => {
-    dataJson && setEpisodes(dataJson.episodes);
-    dataJson && setEpisodesLength(dataJson.episodes.length);
-  }, [dataJson]);
+    dataJson()
+      .then(response => setEpisodes(response));
+    dataJson()
+      .then(response => setEpisodesLength(response.length));
+  }, []);
 
 
   const handleChange = (event) => {

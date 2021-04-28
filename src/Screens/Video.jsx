@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import { DotLoader } from 'react-spinners';
-import { css } from '@emotion/core';
-import { API_KEY } from '../utils/API_KEY';
+import { api } from '../utils';
 
 import { GoBackButton } from '../components';
 import img from '../assets/img/error-video.jpeg';
-
-const overrideDark = css`
-  & div {
-    background-color: #2196f3;
-  }
-`;
 
 const Video = () => {
   const [url, setUrl] = useState([]);
@@ -25,12 +17,12 @@ const Video = () => {
     const getVideo = async () => {
       setIsLoading(true);
       setIsError(false);
+      const response = await api.get(`/${media}/${id}/videos?`, {
+        media,
+        id
+      })
 
-      const response = await fetch(
-        `https://api.themoviedb.org/3/${media}/${id}/videos?api_key=${API_KEY}&language=en-US`
-      );
       const dataJson = await response.json();
-
       const getKey = await dataJson.results.filter((i) => i.type === 'Trailer');
 
       setUrl(getKey);
@@ -43,11 +35,6 @@ const Video = () => {
   return (
     <>
       <GoBackButton />
-      {isLoading && url.length === 0 && (
-        <div>
-          <DotLoader css={overrideDark} size="100px" />
-        </div>
-      )}
       {!isLoading && isError && (
         <div className={`container`}>
           <img src={img} alt='error' />

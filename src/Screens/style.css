@@ -1,0 +1,127 @@
+.nav-tvShow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    margin-top: 15px;
+    transition: 0.3s ease-in;
+    width: 80%;
+}
+
+@media (max-width: 960px){
+    .nav-container .nav-tvShow {
+        width: 100%;
+    }
+}
+
+@media (max-width: 960px){
+    .nav-container .nav-tvShow .navlink.selected {
+        border-bottom: 1px solid #e4eddb;
+    }
+}
+
+
+
+
+.navlink.selected {
+    color: #e4eddb;
+    border-bottom: 2px solid #e4eddb;
+}
+@media (max-width: 960px){
+    .nav-container .nav-tvShow .navlink {
+        font-size: 15px;
+        margin: 5px;
+        padding-bottom: 2px;
+    }
+}
+
+
+
+.navlink {
+    color: #999;
+    text-decoration: none;
+    font-size: 22px;
+    transition: 0.3s;
+    padding: 0 15px 9px 15px;
+    font-weight: 600;
+    transition: 0.3s ease-in;
+}
+
+
+@media (max-width: 960px){
+    .overview-main-container {
+        width: 100%;
+    }
+}
+
+.nav-container {
+    transition: 0.3s ease-in;
+    width: calc(100% - 100px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in;
+}
+.overview-main-container {
+    width: calc(100vw - 100px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in;
+    min-height: calc(100vh - 865px);
+}
+
+@media (max-width: 1260px){
+    .data-container {
+        padding: 60px 20px 40px 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        width: 80%;
+    }
+}
+
+.data-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0 36px 0;
+    margin: 0 0 20px 100px;
+}
+
+
+@media (max-width: 1260px){
+    .info-serie-container {
+        width: -moz-fit-content;
+        width: fit-content;
+        margin: 0;
+        padding: 30px;
+    }
+}
+
+.info-serie-container {
+    width: 90%;
+    margin: 0 40px 0 64px;
+}
+
+.img {
+    width: 250px;
+    height: 200px;
+}
+
+.title-serie p {
+    font-size: 17px;
+}
+
+.list-item{
+    list-style: none;
+    display: flex;
+    margin-bottom: 5px;
+}

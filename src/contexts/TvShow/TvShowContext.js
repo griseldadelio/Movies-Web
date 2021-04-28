@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { API_KEY } from '../../utils/API_KEY';
-import { useFetch } from '../../hooks/useFetch';
+import { api } from '../../utils';
 
 const TvShowContext = createContext();
 
@@ -15,57 +14,64 @@ const TvShowProvider = ({ children }) => {
   const [isLoadingTvShow, setIsLoadingTvShow] = useState(true);
   const [seasonNumber, setSeasonNumber] = useState(1);
 
-  const dataTVShows = useFetch(
-    `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`,
-    []
-  );
+  const dataTVShows = async () => {
+    const { data } = await api.get(`/tv/popular`);
+    return data.results
+  }
 
-  const dataTVRandom = useFetch(
-    `https://api.themoviedb.org/3/tv/popular?page=${
-    Math.floor(Math.random() * 100) + 1
-    }&api_key=${API_KEY}`,
-    []
-  );
 
-  const dataTvTop = useFetch(
-    `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
-    []
-  );
+  const dataTVRandom = async () => {
+    const { data } = await api.get(`/tv/popular`, {
+      params: {
+        page: Math.floor(Math.random() * 100) + 1
+      }
+    });
+    return data.results
+  }
 
-  const tvCurrent = useFetch(
-    `https://api.themoviedb.org/3/tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1`,
-    []
-  );
 
-  const dataTvToday = useFetch(
-    `https://api.themoviedb.org/3/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`,
-    []
-  );
+  const dataTvTop = async () => {
+    const { data } = await api.get(`/tv/top_rated?`);
+    return data.results
+  }
+
+
+  const tvCurrent = async () => {
+    const { data } = await api.get(`/tv/on_the_air?`);
+    return data.results
+  }
+
+
+  const dataTvToday = async () => {
+    const { data } = await api.get(`/tv/airing_today?`);
+    return data.results
+  }
+
+  const indexRandom = Math.floor(Math.random() * 20);
 
   useEffect(() => {
-    (dataTVShows || dataTVRandom || dataTvTop || tvCurrent || dataTvToday) &&
-      setIsLoadingTvShow(true);
-    dataTVShows && setTvShow(dataTVShows.results);
+    setIsLoadingTvShow(true);
+    dataTVShows()
+      .then(response => setTvShow(response))
 
-    const indexRandom = Math.floor(Math.random() * 20);
-    dataTVRandom && setTvShowRandom(dataTVRandom.results[indexRandom]);
-    dataTVRandom &&
-      setYear(dataTVRandom.results[indexRandom].first_air_date.split("-")[0]);
-    dataTVRandom &&
-      setVoteAverage(dataTVRandom.results[indexRandom].vote_average);
+    dataTVRandom()
+      .then(response => setTvShowRandom(response[indexRandom]))
+    dataTVRandom()
+      .then(response => setYear(response[indexRandom].first_air_date.split("-")[0]));
+    dataTVRandom()
+      .then(response => setVoteAverage(response[indexRandom].vote_average));
 
-    dataTvTop && setTvTop(dataTvTop.results);
+    dataTvTop()
+      .then(response => setTvTop(response));
 
-    tvCurrent && setCurrentTv(tvCurrent.results);
+    tvCurrent()
+      .then(response => setCurrentTv(response));
 
-    dataTvToday && setTodayTv(dataTvToday.results);
+    dataTvToday()
+      .then(response => setTodayTv(response));
+    setIsLoadingTvShow(false);
+  }, []);
 
-    dataTVShows &&
-      dataTVRandom &&
-      dataTvTop &&
-      dataTvToday &&
-      setIsLoadingTvShow(false);
-  }, [dataTVShows, dataTVRandom, dataTvTop, tvCurrent, dataTvToday]);
 
   return (
     <TvShowContext.Provider

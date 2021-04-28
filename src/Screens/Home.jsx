@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { CardListPreview, Intro } from "../components";
 
@@ -11,17 +11,8 @@ import '../styles/main.css';
 
 const Home = () => {
   const { data, year, voteAverage, mediatype } = useContext(DataContext);
-  const { dataMovies } = useContext(MovieContext);
+  const { movie } = useContext(MovieContext);
   const { tvShow } = useContext(TvShowContext);
-
-  const [movie, setMovie] = useState([]);
-
-  useEffect(() => {
-    dataMovies()
-      .then((response) =>
-        setMovie(response),
-      )
-  }, [dataMovies]);
 
   return (
     <>

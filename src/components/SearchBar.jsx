@@ -25,24 +25,24 @@ const SearchBar = () => {
       <div className={`search-container ${searchVisible && 'visible'}`} >
         <div className={`close-options-container`}>
           <form className={`options-container`} onClick={(event) => handleMediaClick(event)} >
-            <p >Filter By</p>
-            <div>
-              <label>
-                <input type='radio' name='mediatype' value='movie' defaultChecked />
+            <p className='search-title' >Filter By</p>
+            <div className='col-md-6 ms-5'>
+              <label className='row'>
+                <input className='m-2' type='radio' name='mediatype' value='movie' defaultChecked />
                 Movie
               </label>
-              <label>
-                <input type='radio' name='mediatype' value='tv' />
+              <label className='row'>
+                <input className='m-2' type='radio' name='mediatype' value='tv' />
                 TV Show
               </label>
             </div>
           </form>
-          <Icon.XSquare onClick={() => { handleCloseSearchClick(); }} aria-hidden='true' aria-label='Close' />
+          <Icon.XSquare className='close-icon' onClick={() => { handleCloseSearchClick(); }} aria-hidden='true' aria-label='Close' />
         </div>
-        <form type='submit' onSubmit={(event) => handleInputChange(event)} >
-          <input type='text' placeholder='Search...' name='input' />
-          <button type='submit' onClick={(event) => handleSearch(event)} onKeyDown={(event) => handleSearch(event)}>
-            <Icon.Search aria-hidden='true' aria-label='Search' />
+        <form className='search-input-container' type='submit' onSubmit={(event) => handleInputChange(event)} >
+          <input className='search-input' type='text' placeholder='Search...' name='input' />
+          <button className='search-button' type='submit' onClick={(event) => handleSearch(event)} onKeyDown={(event) => handleSearch(event)}>
+            <Icon.Search className='search-icon' aria-hidden='true' aria-label='Search' />
           </button>
         </form>
       </div>

@@ -4,14 +4,12 @@ import { api } from '../../utils'
 const CategoryContext = createContext();
 
 const CategoryProvider = ({ children }) => {
-  const [maxPage, setMaxPage] = useState(1000);
-  const [page, setPage] = useState(1);
   const [media, setMedia] = useState('tv');
   const [category, setCategory] = useState('popular');
   const [dataByParams, setDataByParams] = useState([]);
 
   const dataCategory = async () => {
-    const { data } = await api.get(`${media}/${category}`, {
+    const { data } = await api.get(`/${media}/${category}?`, {
       params: {
         media,
         category
@@ -21,21 +19,14 @@ const CategoryProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    dataCategory && setDataByParams(dataCategory.results);
-    dataCategory && setMaxPage(dataCategory.total_pages);
-  }, [dataCategory]);
+    dataCategory()
+      .then(response => {
+        setDataByParams(response);
+      })
+  }, []);
 
   return (
-    <CategoryContext.Provider
-      value={{
-        maxPage,
-        page,
-        setMedia,
-        setCategory,
-        setPage,
-        dataByParams,
-      }}
-    >
+    <CategoryContext.Provider value={{ setMedia, setCategory, dataByParams }}>
       {children}
     </CategoryContext.Provider>
   );
