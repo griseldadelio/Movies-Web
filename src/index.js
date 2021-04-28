@@ -4,40 +4,26 @@ import App from './App';
 
 import './styles/index.css'
 
-import { DataProvider } from './contexts/DataContext';
-import { ThemeProvider } from './contexts/ThemeContext';
-import { MovieProvider } from './contexts/MovieContext';
-import { TvShowProvider } from './contexts/TvShowContext';
-import { PaginationProvider } from './contexts/PaginationContext';
-import { CategoryProvider } from './contexts/CategoryContext';
-import { UserProvider } from './contexts/UserContext';
-import { FavsProvider } from './contexts/FavsContext';
-import { SearchProvider } from './contexts/SearchContext';
-import { DiscoverProvider } from './contexts/DiscoverContext';
-
+import { DataProvider, MovieProvider, TvShowProvider, CategoryProvider, UserProvider, FavsProvider, SearchProvider, DiscoverProvider } from './contexts';
 
 ReactDOM.render(
   <React.StrictMode>
     <CategoryProvider>
-      <PaginationProvider>
-        <SearchProvider>
-          <DiscoverProvider>
-            <UserProvider>
-              <FavsProvider>
-                <MovieProvider>
-                  <TvShowProvider>
-                    <DataProvider>
-                      <ThemeProvider>
-                        <App />
-                      </ThemeProvider>
-                    </DataProvider>
-                  </TvShowProvider>
-                </MovieProvider>
-              </FavsProvider>
-            </UserProvider>
-          </DiscoverProvider>
-        </SearchProvider>
-      </PaginationProvider>
+      <SearchProvider>
+        <DiscoverProvider>
+          <UserProvider>
+            <FavsProvider>
+              <MovieProvider>
+                <TvShowProvider>
+                  <DataProvider>
+                    <App />
+                  </DataProvider>
+                </TvShowProvider>
+              </MovieProvider>
+            </FavsProvider>
+          </UserProvider>
+        </DiscoverProvider>
+      </SearchProvider>
     </CategoryProvider>
   </React.StrictMode>,
   document.getElementById("root")

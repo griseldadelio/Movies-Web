@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { API_KEY } from '../utils';
-import { useFetch } from '../hooks/useFetch';
+import { API_KEY } from '../../utils/API_KEY';
+import { useFetch } from '../../hooks/useFetch';
+
+import { api } from '../../utils'
 
 const SearchContext = createContext();
 
@@ -46,12 +48,32 @@ const SearchProvider = ({ children }) => {
     `https://api.themoviedb.org/3/search/${!media ? "movie" : media}?api_key=${API_KEY}&language=en-US${inputValue && `&query=${inputValue}`}&page=${searchPage}`,
     [inputValue, media, searchPage, newSearch]
   );
-
   useEffect(() => {
     searchedData && setResults(searchedData.results);
     searchedData && setSearchMaxPage(searchedData.total_pages);
     searchedData && setNewSearch(false);
   }, [searchedData]);
+
+  // const searchedData = async () => {
+  //   const { data } = await api.get(`/search/${!media ? "movie" : media}${inputValue && `&query=${inputValue}`}&page=${searchPage}`, {
+  //     params: {
+  //       media,
+  //      query:inputValue,
+  //      page:searchPage
+  //     }
+  //   });
+  //   console.log(data.results)
+  //   return data.results
+  // }
+
+
+  // useEffect(() => {
+  //   searchedData()
+  //     .then(response => setResults(response.results))
+  //   searchedData()
+  //     .then(response => setSearchMaxPage(response.total_pages));
+  //   setNewSearch(false);
+  // }, []);
 
   return (
     <SearchContext.Provider

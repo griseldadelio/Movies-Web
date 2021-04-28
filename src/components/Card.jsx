@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { imageBaseUrl } from '../utils/ImageBaseUrl';
 import { useHistory } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
@@ -9,11 +9,9 @@ import { Votes } from './Votes';
 import { FavIconToggle } from './FavIconToggle';
 import noPosterFound from '../assets/img/404PosterNotFound.jpg';
 
-import ThemeContext from '../contexts/ThemeContext';
 
 const Card = ({ cardInfo }) => {
   const history = useHistory();
-  const { theme } = useContext(ThemeContext);
 
   const { id, src, title, votes, mediatype, like } = cardInfo;
 
@@ -29,7 +27,7 @@ const Card = ({ cardInfo }) => {
         alt={`Image showing poster of '${title}'`}
         onClick={(event) => handleMediaDetails(event, id, mediatype)}
       />
-      <h6 className={`mt-3 ${theme}`} onClick={(event) => handleMediaDetails(event, id, mediatype)}>
+      <h6 className={`mt-3`} onClick={(event) => handleMediaDetails(event, id, mediatype)}>
         {title}
       </h6>
       {title && <Votes contentName={title} voteAverage={votes} />}

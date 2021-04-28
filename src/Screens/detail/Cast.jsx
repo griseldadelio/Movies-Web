@@ -1,14 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { CardCast } from '../../components';
 
-import ThemeContext from '../../contexts/ThemeContext';
-
 const Cast = ({ data, mediatype }) => {
-  const { theme } = useContext(ThemeContext);
 
   return (
     data && (
-      <div className={`${theme}`}>
+      <div>
         {data &&
           data.map((singleCard) => (
             <CardCast

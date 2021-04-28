@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { imageBaseUrl } from '../utils/ImageBaseUrl';
 import * as Icon from 'react-bootstrap-icons';
@@ -7,10 +7,7 @@ import '../styles/intro.css'
 
 import { Votes } from './Votes';
 
-import ThemeContext from '../contexts/ThemeContext';
-
 const Intro = ({ data, year, voteAverage, mediatype }) => {
-    const { theme } = useContext(ThemeContext);
     const history = useHistory();
 
     const goToInfo = () => {
@@ -46,7 +43,7 @@ const Intro = ({ data, year, voteAverage, mediatype }) => {
                         </div>
                         <p className='intro-description'>{data.overview}</p>
                         <Link to={`/video/${mediatype}/${data.id}`}>
-                            <button className={`button ${theme}`}>
+                            <button className={`button`}>
                                 <Icon.PlayCircle className='icon-play' />
                                 <h5 className='p-2' >Watch Video</h5>
                             </button>

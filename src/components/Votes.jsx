@@ -1,13 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import * as Icon from 'react-bootstrap-icons';
 import { AverageVote } from './AverageVote';
-
-import ThemeContext from '../contexts/ThemeContext';
 
 import '../styles/votes.css';
 
 const Votes = ({ contentName, voteAverage, ...props }) => {
-  const { theme } = useContext(ThemeContext);
   const [isVotingNumberVisible, setIsVotingNumberVisible] = useState(true);
 
   const handleClick = () => {
@@ -15,7 +12,7 @@ const Votes = ({ contentName, voteAverage, ...props }) => {
   };
 
   return (
-    <div className={`rating-container ${theme}`} {...props} onClick={handleClick}>
+    <div className={`rating-container`} {...props} onClick={handleClick}>
       {isVotingNumberVisible && (voteAverage || voteAverage === 0) && (
         <AverageVote voteAverage={voteAverage > 0 ? voteAverage : 0} />)
       }

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { db } from '../configs/firebase';
+import { db } from '../../configs/firebase';
 
 const FavsContext = createContext();
 
@@ -10,35 +10,33 @@ const FavsProvider = ({ children }) => {
 
   const updateSeriesFavs = (user) => {
     let favs = [];
-    user &&
-      db
-        .collection('Favs')
-        .doc(`${user.email}`)
-        .collection('tv')
-        .get()
-        .then((response) => {
-          response.forEach((document) => {
-            favs.push(document.data());
-          });
-          setSeriesArray(favs);
+    user && db
+      .collection('Favs')
+      .doc(`${user.email}`)
+      .collection('tv')
+      .get()
+      .then((response) => {
+        response.forEach((document) => {
+          favs.push(document.data());
         });
+        setSeriesArray(favs);
+      });
   };
 
   const updateMovieFavs = (user) => {
     let favs = [];
-    user &&
-      db
-        .collection('Favs')
-        .doc(`${user.email}`)
-        .collection('movie')
-        .get()
-        .then((response) => {
-          response.forEach((document) => {
-            favs.push(document.data());
-          });
-
-          setMoviesArray(favs);
+    user && db
+      .collection('Favs')
+      .doc(`${user.email}`)
+      .collection('movie')
+      .get()
+      .then((response) => {
+        response.forEach((document) => {
+          favs.push(document.data());
         });
+
+        setMoviesArray(favs);
+      });
   };
 
   useEffect(() => {

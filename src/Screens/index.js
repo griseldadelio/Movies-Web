@@ -10,3 +10,4 @@ export { Overview } from './detail/Overview';
 export { Video } from './Video';
 export { Shows } from './Shows';
 export { Series } from './Series';
+export { Search } from './Search';

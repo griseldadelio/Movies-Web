@@ -2,15 +2,13 @@ import React, { useContext, useState } from 'react';
 import * as Icon from 'react-bootstrap-icons'
 import { db } from '../configs/firebase';
 
-import UserContext from '../contexts/UserContext';
-import FavsContext from '../contexts/FavsContext';
-import ThemeContext from '../contexts/ThemeContext';
+import UserContext from '../contexts/User/UserContext';
+import FavsContext from '../contexts/Favorite/FavsContext';
 
 const FavIconToggle = ({ like, id, src, title, votes, mediatype }) => {
   const [fav, setFav] = useState(false);
   const [previousFav, setPreviousFav] = useState('');
   const { user } = useContext(UserContext);
-  const { theme } = useContext(ThemeContext);
   const { favsArray, setFavsArray, updateSeriesFavs, updateMovieFavs } = useContext(FavsContext);
 
   const handleFavClick = (id, src, title, votes, mediatype, user) => {
@@ -46,9 +44,7 @@ const FavIconToggle = ({ like, id, src, title, votes, mediatype }) => {
       .collection(`${mediatype}`)
       .get()
       .then((response) => {
-        const docSelected = response.docs.filter(
-          (document) => document.data().id === id
-        );
+        const docSelected = response.docs.filter((document) => document.data().id === id);
 
         if (!docSelected[0]) {
           return;
@@ -88,10 +84,7 @@ const FavIconToggle = ({ like, id, src, title, votes, mediatype }) => {
             <Icon.HeartFill onClick={() => handleBreakFavClick(id, like)} />
           )}
           {!like && (
-            <Icon.Trash className={`${theme}`} onClick={() =>
-              handleFavClick(id, src, title, votes, mediatype, user)
-            }
-            />
+            <Icon.Trash onClick={() => handleFavClick(id, src, title, votes, mediatype, user)} />
           )}
         </div>
       )}

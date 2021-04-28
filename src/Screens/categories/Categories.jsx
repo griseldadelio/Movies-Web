@@ -1,67 +1,41 @@
 import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { Card, GoBackButton } from '../../components';
 
-import { DoteLoader } from 'react-spinners';
-import { css } from '@emotion/core';
+import CategoryContext from '../../contexts/Category/CategoryContext';
+import FavsContext from '../../contexts/Favorite/FavsContext';
 
-import { Card, Pagination, ScrollToTop, GoBackButton } from '../../components';
-
-import ThemeContext from '../../contexts/ThemeContext';
-import CategoryContext from '../../contexts/CategoryContext';
-import FavsContext from '../../contexts/FavsContext';
-
-const overrideDark = css`
-  & div {
-    background-color: #2196f3;
-  }
-`;
-
-const overrideLight = css`
-  & div {
-    background-color: #992e2e;
-  }
-`;
+import './style.css'
 
 const Categories = () => {
   const { media, category } = useParams();
-  const { theme } = useContext(ThemeContext);
   const { favsArray } = useContext(FavsContext);
-  const { page, setPage, maxPage, dataByParams, setMedia, setCategory, isLoading } = useContext(CategoryContext);
+  const { dataByParams, setMedia, setCategory, isLoading } = useContext(CategoryContext);
 
   const title2 = category.split('_').join(' ');
 
   useEffect(() => {
     setMedia(media);
     setCategory(category);
-  }, [media, category]);
+  }, [media, category, setCategory, setMedia]);
 
   return (
     <>
       <GoBackButton />
-      {isLoading && (
-        <div className={` ${theme}`}>
-          {theme === 'dark' ? (
-            <DoteLoader css={overrideDark} size='100' />
-          ) : (
-              <DoteLoader css={overrideLight} size='100' />
-            )}
-        </div>
-      )}
       {!isLoading && favsArray && (
         <>
-          <ScrollToTop />
-          <div className={`${theme}`}>
+          <div className='main-container'>
             <div>
-              <h2 className={` ${theme} `} >
+              <h2 className='category-title-container'>
                 {media === 'movie' ? `${title2} movies` : `${title2} tv shows`}
               </h2>
             </div>
-            <div className={`${theme}`}>
+            <div className='main-category-container'>
               {dataByParams.map((singleCard) =>
                 media === 'movie' && singleCard.name ? (
-                  <div>hola gri</div>
+                  <div className='main-category-container'></div>
                 ) : (
-                    <Card
+                    <Card key={singleCard.id}
                       cardInfo={{
                         id: singleCard.id,
                         src: singleCard.poster_path,
@@ -76,7 +50,6 @@ const Categories = () => {
                   )
               )}
             </div>
-            <Pagination page={page} maxPage={maxPage} setPage={setPage} />
           </div>
         </>
       )}

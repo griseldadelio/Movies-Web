@@ -1,21 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import * as Icon from 'react-bootstrap-icons';
 import { useHistory } from 'react-router-dom';
 
-import ThemeContext from '../contexts/ThemeContext';
-
 const GoBackButton = () => {
-  const { theme } = useContext(ThemeContext);
   const history = useHistory();
   const handleGoBackClick = () => {
     history.goBack();
   };
 
   return (
-    <div className={` ${theme}`}>
-      <button onClick={handleGoBackClick} className={` ${theme}`}>
-        <Icon.ArrowLeft className={`${theme}`} aria-hidden='true' />
-        <p className={`${theme}`}>Go Back</p>
+    <div>
+      <button onClick={handleGoBackClick}>
+        <Icon.ArrowLeft aria-hidden='true' />
+        <p>Go Back</p>
       </button>
     </div>
   );
