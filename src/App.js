@@ -1,41 +1,16 @@
-import React, { useEffect, useContext } from 'react'
+import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Home, Movies, Movie, Categories, Video, Series, Shows, Search } from './Screens';
-import firebase from './configs/firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Footer, SearchBar, NavGuest, NavAuth } from './components'
-
-import UserContext from './contexts/User/UserContext';
-import FavsContext from './contexts/Favorite/FavsContext';
-
-
+import { Footer, SearchBar, NavBar } from './components'
 
 const App = () => {
-  const { user, setUser } = useContext(UserContext);
-  const { updateSeriesFavs, updateMovieFavs } = useContext(FavsContext);
-
-  useEffect(() => {
-    const unsuscribe = firebase
-      .auth()
-
-      .onAuthStateChanged((user) => {
-        setUser(user);
-      });
-
-    return () => unsuscribe();
-  }, [setUser]);
-
-  useEffect(() => {
-    updateSeriesFavs(user);
-    updateMovieFavs(user);
-  }, [user, updateMovieFavs, updateSeriesFavs]);
-
   return (
-    <>
+    <div className={'main-aside-container'}>
       <BrowserRouter>
+        <NavBar />
         <SearchBar />
-        {user ? <NavAuth /> : <NavGuest />}
         <Switch>
           <Route exact path="/:media/category/:category" component={Categories} />
           <Route exact path="/movie" component={Movies} />
@@ -49,7 +24,7 @@ const App = () => {
         <Footer />
       </BrowserRouter>
 
-    </>
+    </div>
   );
 }
 

@@ -1,21 +1,20 @@
 import React from 'react';
 import { imageBaseUrl } from '../../utils/ImageBaseUrl';
-
+import './detail.css'
 import noImageFound from '../../assets/img/image-not-found-scaled-1150x647.png';
 
-const CardEpisodes = ({ src, episode, title, overview, date }) => {
+const CardEpisodes = ({ src, title, overview, date }) => {
 
   return (
-    <article >
-      <div >
-        <img src={src ? `${imageBaseUrl}${src}` : noImageFound} alt='not found' />
+    <article className={'card-episode'}>
+      <div className={'img-episode-container'}>
+        <img className={'img-episode'} src={src ? `${imageBaseUrl}${src}` : noImageFound} alt='not found' />
       </div>
-      <div >
-        <span>{episode}</span>
-        <h3> {title} </h3>
+      <div className={'card-episode-title '}>
+        <h4> {title} </h4>
       </div>
-      <span className={`card-episode-overview`}>{overview}</span>
-      <span className={`card-episode-date`}>{date}</span>
+      <span className={`card-episode-date pt-3`}>{date}</span>
+      <span className={`card-episode-overview pt-3`}>{overview}</span>
     </article>
   );
 };

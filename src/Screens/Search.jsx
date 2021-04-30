@@ -4,7 +4,7 @@ import { Card } from '../components';
 import DiscoverContext from "../contexts/Discover/DiscoverContext";
 import SearchContext from "../contexts/Search/SearchContext";
 
-import '../styles/index.css'
+import './style.css'
 
 export const Search = () => {
     const { mediaAdvance, discover } = useContext(DiscoverContext);
@@ -14,7 +14,7 @@ export const Search = () => {
         <>
             {searchVisible && results && (
                 <div className={`results-container`}>
-                    <div className="cards-discover-container">
+                    <div className={"cards-discover-container"}>
                         {results &&
                             results.map((result) => (
                                 <Card

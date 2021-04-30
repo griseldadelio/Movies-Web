@@ -1,13 +1,10 @@
 import React, { useContext } from 'react';
-
 import { CardListPreview, Intro } from "../components";
 
 import DataContext from "../contexts/Data/DataContext";
 import MovieContext from "../contexts/Movie/MovieContext";
 import TvShowContext from "../contexts/TvShow/TvShowContext";
-
-import '../styles/main.css';
-
+import './style.css'
 
 const Home = () => {
   const { data, year, voteAverage, mediatype } = useContext(DataContext);

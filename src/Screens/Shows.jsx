@@ -80,18 +80,18 @@ const Shows = () => {
         <div className={`nav-container`}>
           {' '}
           <nav className={`nav-tvShow `}>
-            <NavLink className='navlink' to={`${url}/info`} activeClassName='selected' >
+            <NavLink className={'navlink'} to={`${url}/info`} activeClassName='selected' >
               OVERVIEW
             </NavLink>
-            <NavLink className='navlink' to={`${url}/season/${seasonNumber}`} activeClassName='selected' >
+            <NavLink className={'navlink'} to={`${url}/season/${seasonNumber}`} activeClassName='selected' >
               EPISODES
             </NavLink>
             {similarShows.length > 0 && (
-              <NavLink className='navlink' to={`${url}/similar`} activeClassName='selected'>
+              <NavLink className={'navlink'} to={`${url}/similar`} activeClassName='selected'>
                 SIMILAR
               </NavLink>
             )}
-            <NavLink className='navlink' to={`${url}/cast`} activeClassName='selected' >
+            <NavLink className={'navlink'} to={`${url}/cast`} activeClassName='selected' >
               CAST
             </NavLink>
           </nav>

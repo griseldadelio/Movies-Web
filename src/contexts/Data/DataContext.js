@@ -36,7 +36,7 @@ const DataProvider = ({ children }) => {
       })
     dataJson()
       .then(response => {
-        setYear(response[indexRandom].release_date.split('-')[0])
+        setYear(response[indexRandom].release_date)
       })
   }, []);
 
