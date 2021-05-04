@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { Card } from '../components';
 
-import DiscoverContext from "../contexts/Discover/DiscoverContext";
 import SearchContext from "../contexts/Search/SearchContext";
 
 import './style.css'
 
 export const Search = () => {
-    const { mediaAdvance, discover } = useContext(DiscoverContext);
     const { searchVisible, results, media, showResults } = useContext(SearchContext);
 
     return (
@@ -33,7 +31,7 @@ export const Search = () => {
                 </div>
             )}
 
-            {showResults && discover && (
+            {/* {showResults && discover && (
                 <div>
                     {showResults && discover.length === 0 && (
                         <h3 >
@@ -60,7 +58,7 @@ export const Search = () => {
                     </div>
 
                 </div>
-            )}
+            )} */}
         </>
     )
 }
