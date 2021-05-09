@@ -43,28 +43,18 @@ const MovieProvider = ({ children }) => {
 
   useEffect(() => {
     dataMovies()
-      .then((response) =>
-        setMovie(response),
-      )
+      .then((response) => setMovie(response))
   }, []);
 
   useEffect(() => {
     dataMovieTop()
-      .then((response) =>
-        setMovieTop(response),
-      )
+      .then((response) => setMovieTop(response))
     dataNow()
-      .then((response) =>
-        setNowPlaying(response),
-      )
+      .then((response) => setNowPlaying(response))
     dataUpcoming()
-      .then((response) =>
-        setMovieUpcoming(response),
-      )
+      .then((response) => setMovieUpcoming(response))
     dataMovieRandom()
-      .then((response) =>
-        setMovieRandom(response[indexRandom]),
-      )
+      .then((response) => setMovieRandom(response[indexRandom]))
   }, []);
 
   return (

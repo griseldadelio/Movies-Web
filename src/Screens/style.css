@@ -87,6 +87,7 @@ body {
     color: #e4eddb;
     border-bottom: 2px solid #e4eddb;
 }
+
 @media (max-width: 960px){
 .navlink {
     font-size: 15px;
@@ -129,10 +130,14 @@ body {
 }
 
 
-
-
-
-
+.cards-results-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+}
 
 
 

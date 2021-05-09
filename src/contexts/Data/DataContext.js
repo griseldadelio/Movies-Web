@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { api } from '../../utils';
 
-
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
@@ -22,20 +21,12 @@ const DataProvider = ({ children }) => {
     return data.results
   }
 
-
   useEffect(() => {
     dataJson()
-      .then(response => setData(response[indexRandom]))
-    dataJson()
       .then(response => {
+        setData(response[indexRandom])
         setVoteAverage(response[indexRandom].vote_average)
-      })
-    dataJson()
-      .then(response => {
         setMediatype(response[indexRandom].media_type)
-      })
-    dataJson()
-      .then(response => {
         setYear(response[indexRandom].release_date)
       })
   }, []);

@@ -46,11 +46,11 @@ const Movie = () => {
 
   useEffect(() => {
     dataJsonMovieId()
-      .then(response => setMovieID(response.data));
-    dataJsonMovieId()
-      .then(response => setVoteAverage(response.data.vote_average));
-    dataJsonMovieId()
-      .then(response => setYear(response.data.release_date));
+      .then(response => {
+        setMovieID(response.data)
+        setVoteAverage(response.data.vote_average)
+        setYear(response.data.release_date)
+      })
 
     jsonSimilarMovies()
       .then(response => setSimilarMovies(response.data.results));

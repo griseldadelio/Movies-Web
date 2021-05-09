@@ -1,21 +1,22 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { api } from '../../utils';
+import { API_KEY } from '../../utils/API_KEY';
+import { useFetch } from '../../hooks/useFetch';
+import { api } from '../../utils'
 
 const SearchContext = createContext();
 
 const SearchProvider = ({ children }) => {
   const [searchVisible, setSearchVisible] = useState(false);
-  const [newSearch, setNewSearch] = useState(false);
   const [media, setMedia] = useState('movie');
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState();
   const [results, setResults] = useState([]);
   const [visibleResults, setVisibleResults] = useState(false);
-  const [showResults, setShowResults] = useState(false);
   const [searchPage, setSearchPage] = useState(1);
-  const [searchMaxPage, setSearchMaxPage] = useState(1000);
 
-  const history = useHistory();
+  // const history = useHistory()
+  // const params = new URLSearchParams(window.location.search)
+  // const queryParam = params.get('s');
 
   const handleSearchBarVisible = (event) => {
     if (event.key === 'Enter' || event.type === 'click') {
@@ -33,64 +34,47 @@ const SearchProvider = ({ children }) => {
     setInputValue(event.target.input.value);
     setVisibleResults(true);
   };
+  console.log(inputValue)
 
   const handleCloseSearchClick = () => {
     setVisibleResults(false);
     setSearchVisible(false);
   };
 
-  const handleShowResultsClick = (event) => {
-    event.preventDefault();
-    setShowResults(true);
-  };
-
-  const searchData = async () => {
-    const { data } = await api.get(`/search/${!media ? "movie" : media}?${inputValue && `&query=${inputValue}`}&page=${searchPage}`, {
-      params: {
-        query: inputValue,
-        page: searchPage
-      }
-    })
-    console.log(data.results)
-    return data.results
-  }
+  const searchedData = useFetch(
+    `https://api.themoviedb.org/3/search/${!media ? "movie" : media}?api_key=${API_KEY}&language=en-US${
+    inputValue && `&query=${inputValue}`}&page=${searchPage}`,
+    [inputValue, media, searchPage]
+  );
 
   useEffect(() => {
-    searchData()
-      .then(response => setResults(response))
-    searchData()
-      .then(response => setSearchMaxPage(response.total_pages))
-  })
+    searchedData && setResults(searchedData.results);
+  }, [searchedData]);
 
+  // const searchedData = async () => {
+  //   const { data } = await api.get(`/search/${!media ? "movie" : media}/${
+  //     inputValue && `&query=${inputValue}`}&page=${searchPage}`, {
+  //     params: {
+  //       media,
+  //       inputValue,
+  //       searchPage
+  //     }
+  //   });
+  //   console.log(data)
+  //   return data.results
+  // }
   // useEffect(() => {
-  //   searchedData && setResults(searchedData.results);
-  //   searchedData && setSearchMaxPage(searchedData.total_pages);
-  //   searchedData && setNewSearch(false);
-  // }, [searchedData]);
+  //   searchedData()
+  //     .then(response => setResults(response.results));
+  // }, []);
+
 
   return (
-    <SearchContext.Provider
-      value={{
-        searchPage,
-        searchVisible,
-        visibleResults,
-        results,
-        media,
-        inputValue,
-        showResults,
-        searchMaxPage,
-        handleSearchBarVisible,
-        handleMediaClick,
-        setSearchVisible,
-        setVisibleResults,
-        handleInputChange,
-        handleCloseSearchClick,
-        handleShowResultsClick,
-        setSearchPage,
-        setNewSearch,
-        setShowResults,
-      }}
-    >
+    <SearchContext.Provider value={{
+      searchPage, searchVisible, visibleResults, results, media, inputValue,
+      handleSearchBarVisible, handleMediaClick, setSearchVisible, setVisibleResults,
+      handleInputChange, handleCloseSearchClick, setSearchPage
+    }}>
       {children}
     </SearchContext.Provider>
   );

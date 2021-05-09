@@ -6,16 +6,16 @@ import SearchContext from "../contexts/Search/SearchContext";
 import './style.css'
 
 export const Search = () => {
-    const { searchVisible, results, media, showResults } = useContext(SearchContext);
+    const { searchVisible, results, media } = useContext(SearchContext);
 
     return (
         <>
             {searchVisible && results && (
                 <div className={`results-container`}>
-                    <div className={"cards-discover-container"}>
+                    <div className={"cards-results-container"}>
                         {results &&
                             results.map((result) => (
-                                <Card
+                                <Card key={result.id}
                                     cardInfo={{
                                         id: result.id,
                                         src: result.poster_path,

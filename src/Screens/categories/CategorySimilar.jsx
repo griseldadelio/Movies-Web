@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from '../../components';
 import '../style.css'
-import './cat.css'
+import './catego.css'
 
 const CategorySimilar = ({ data, mediatype }) => {
 
@@ -11,7 +11,7 @@ const CategorySimilar = ({ data, mediatype }) => {
         <h2 className={'px-5'}>
           {mediatype === 'movie' ? 'Similar Movies' : 'Similar Shows'}
         </h2>
-        <div className={'main-category-container'}>
+        <div className={'similar-cards-container'}>
           {data && data.map((singleCard) => (
             <Card key={singleCard.id}
               cardInfo={{

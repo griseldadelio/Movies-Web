@@ -43,20 +43,17 @@ const Shows = () => {
         TVId
       }
     });
-    console.log(data)
     return data.cast
   }
 
   useEffect(() => {
     dataJsonTVID()
-      .then(response => setTvShowID(response));
-    dataJsonTVID()
-      .then(response => setVoteAverage(response.vote_average));
-    dataJsonTVID()
-      .then(response => setYear(response.release_date));
-    dataJsonTVID()
-      .then((response) =>
-        setSeasons(response.seasons));
+      .then(response => {
+        setTvShowID(response)
+        setVoteAverage(response.vote_average)
+        setYear(response.release_date)
+        setSeasons(response.seasons)
+      });
   }, []);
 
   useEffect(() => {

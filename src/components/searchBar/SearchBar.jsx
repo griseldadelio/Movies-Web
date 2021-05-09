@@ -7,16 +7,12 @@ import './search.css'
 import SearchContext from '../../contexts/Search/SearchContext';
 
 const SearchBar = () => {
-  const { searchVisible, handleMediaClick, handleInputChange, handleCloseSearchClick, setNewSearch, setShowResults } = useContext(SearchContext);
+  const { searchVisible, handleMediaClick, handleInputChange, handleCloseSearchClick } = useContext(SearchContext);
   const history = useHistory();
-
-
 
   const handleSearch = (event) => {
     if (event.key === 'Enter' || event.type === 'click') {
       history.push('/search');
-      setNewSearch(true);
-      setShowResults(false)
     }
   };
 

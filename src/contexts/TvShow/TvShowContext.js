@@ -55,11 +55,11 @@ const TvShowProvider = ({ children }) => {
       .then(response => setTvShow(response))
 
     dataTVRandom()
-      .then(response => setTvShowRandom(response[indexRandom]))
-    dataTVRandom()
-      .then(response => setYear(response[indexRandom].first_air_date.split("-")[0]));
-    dataTVRandom()
-      .then(response => setVoteAverage(response[indexRandom].vote_average));
+      .then(response => {
+        setTvShowRandom(response[indexRandom])
+        setYear(response[indexRandom].first_air_date.split("-")[0])
+        setVoteAverage(response[indexRandom].vote_average)
+      })
 
     dataTvTop()
       .then(response => setTvTop(response));
@@ -75,19 +75,7 @@ const TvShowProvider = ({ children }) => {
 
   return (
     <TvShowContext.Provider
-      value={{
-        todayTv,
-        currentTv,
-        tvTop,
-        tvShow,
-        tvShowRandom,
-        year,
-        voteAverage,
-        isLoadingTvShow,
-        seasonNumber,
-        setSeasonNumber,
-      }}
-    >
+      value={{ todayTv, currentTv, tvTop, tvShow, tvShowRandom, year, voteAverage, isLoadingTvShow, seasonNumber, setSeasonNumber }}>
       {children}
     </TvShowContext.Provider>
   );

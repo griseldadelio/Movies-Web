@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Navbar } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import './nav.css';
 import { LogoNav } from '.';
@@ -19,17 +18,17 @@ const NavBar = () => {
   return (
     <>
       <nav className={`responsive-nav`} >
-        <a className={'responsive-nav-link'}
+        <div className={'responsive-nav-link'}
           onClick={(event) => handleToggle(event)}
           onKeyDown={(event) => handleToggle(event)} >
           <Icon.List className={`nav-icon`} aria-hidden='true' />
-        </a>
-        <a
+        </div>
+        <div
           className={`responsive-nav-link nav-close-icon ${noShow && 'set-show-close'}`}
           onClick={(event) => handleToggle(event)}
           onKeyDown={(event) => handleToggle(event)}>
           <Icon.X className={`nav-icon`} aria-hidden='true' />
-        </a>
+        </div>
       </nav>
       <nav className={`aside ${noShow && 'set-show-nav'}`}>
         <div className='nav-links'>
