@@ -18,8 +18,6 @@ const Home = () => {
   const { dataMovies } = useContext(MovieContext);
   const { dataTVShows } = useContext(TvShowContext);
 
-  const indexRandom = Math.floor(Math.random() * 20);
-
   useEffect(() => {
     dataTVShows()
       .then(response => setTvShow(response))
@@ -31,6 +29,7 @@ const Home = () => {
   }, [dataMovies]);
 
   useEffect(() => {
+    const indexRandom = Math.floor(Math.random() * 20);
     dataJson()
       .then(response => {
         setData(response[indexRandom])
@@ -38,7 +37,7 @@ const Home = () => {
         setMediatype(response[indexRandom].media_type)
         setYear(response[indexRandom].release_date)
       })
-  }, []);
+  }, [dataJson]);
 
   return (
     <>

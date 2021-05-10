@@ -18,7 +18,7 @@ const Categories = () => {
   useEffect(() => {
     setMedia(media);
     setCategory(category);
-  }, [media, category]);
+  }, [media, category, setCategory, setMedia]);
 
   return (
     <>

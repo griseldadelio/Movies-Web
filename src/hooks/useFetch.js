@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-
-
 const useFetch = (url, DependenciesArray) => {
   const [data, setData] = useState();
 

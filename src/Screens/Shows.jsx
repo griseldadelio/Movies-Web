@@ -19,34 +19,15 @@ const Shows = () => {
   const { path, url } = useRouteMatch();
   const { seasonNumber } = useContext(TvShowContext);
 
-  const dataJsonTVID = async () => {
-    const { data } = await api.get(`/tv/${TVId}?`, {
-      params: {
-        TVId
-      }
-    });
-    return data
-  }
-
-  const dataJsonSimilarShows = async () => {
-    const { data } = await api.get(`/tv/${TVId}/similar?`, {
-      params: {
-        TVId
-      }
-    });
-    return data.results
-  }
-
-  const dataCastTv = async () => {
-    const { data } = await api.get(`/tv/${TVId}/credits?`, {
-      params: {
-        TVId
-      }
-    });
-    return data.cast
-  }
-
   useEffect(() => {
+    const dataJsonTVID = async () => {
+      const { data } = await api.get(`/tv/${TVId}?`, {
+        params: {
+          TVId
+        }
+      });
+      return data
+    }
     dataJsonTVID()
       .then(response => {
         setTvShowID(response)
@@ -54,21 +35,40 @@ const Shows = () => {
         setYear(response.release_date)
         setSeasons(response.seasons)
       });
-  }, []);
+  }, [TVId]);
+
 
   useEffect(() => {
+    const dataJsonSimilarShows = async () => {
+      const { data } = await api.get(`/tv/${TVId}/similar?`, {
+        params: {
+          TVId
+        }
+      });
+      return data.results
+    }
     dataJsonSimilarShows()
       .then(response => {
         setSimilarShows(response)
       })
-  }, []);
+  }, [TVId]);
+
 
   useEffect(() => {
+    const dataCastTv = async () => {
+      const { data } = await api.get(`/tv/${TVId}/credits?`, {
+        params: {
+          TVId
+        }
+      });
+      return data.cast
+    }
     dataCastTv()
       .then(response => {
         setCastTV(response)
       })
-  }, []);
+  }, [TVId]);
+
 
   return (
     tvShowID && (

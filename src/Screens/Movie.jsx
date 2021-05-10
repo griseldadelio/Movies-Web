@@ -16,48 +16,51 @@ const Movie = () => {
   const { movieId } = useParams();
   const { path, url } = useRouteMatch();
 
-  const dataJsonMovieId = async () => {
-    const data = api.get(`/movie/${movieId}?`, {
-      params: {
-        movieId
-      }
-    });
-    return data
-  }
-
-  const jsonSimilarMovies = async () => {
-    const data = api.get(`/movie/${movieId}/similar?`, {
-      params: {
-        movieId
-      }
-    });
-    return data
-  }
-
-  const jsonMovieCast = async () => {
-    const data = api.get(`/movie/${movieId}/credits?`, {
-      params: {
-        movieId
-      }
-    });
-    return data
-  }
-
-
   useEffect(() => {
+    const dataJsonMovieId = async () => {
+      const data = api.get(`/movie/${movieId}?`, {
+        params: {
+          movieId
+        }
+      });
+      return data
+    }
     dataJsonMovieId()
       .then(response => {
         setMovieID(response.data)
         setVoteAverage(response.data.vote_average)
         setYear(response.data.release_date)
       })
+  }, [movieId]);
 
+
+  useEffect(() => {
+    const jsonSimilarMovies = async () => {
+      const data = api.get(`/movie/${movieId}/similar?`, {
+        params: {
+          movieId
+        }
+      });
+      return data
+    }
     jsonSimilarMovies()
       .then(response => setSimilarMovies(response.data.results));
+  }, [movieId]);
+
+
+  useEffect(() => {
+    const jsonMovieCast = async () => {
+      const data = api.get(`/movie/${movieId}/credits?`, {
+        params: {
+          movieId
+        }
+      });
+      return data
+    }
 
     jsonMovieCast()
       .then(response => setMovieCast(response.data.cast));
-  }, []);
+  }, [movieId]);
 
   return (
     movieID && (

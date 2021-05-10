@@ -14,28 +14,36 @@ const Series = () => {
   const [todayTv, setTodayTv] = useState([]);
 
   const { dataTVShows, dataTVRandom, dataTvTop, tvCurrent, dataTvToday } = useContext(TvShowContext);
-  const indexRandom = Math.floor(Math.random() * 20);
 
   useEffect(() => {
     dataTVShows()
       .then(response => setTvShow(response))
+  }, [dataTVShows]);
 
+  useEffect(() => {
+    const indexRandom = Math.floor(Math.random() * 20);
     dataTVRandom()
       .then(response => {
         setTvShowRandom(response[indexRandom])
         setYear(response[indexRandom].first_air_date.split("-")[0])
         setVoteAverage(response[indexRandom].vote_average)
       })
+  }, [dataTVRandom]);
 
+  useEffect(() => {
     dataTvTop()
       .then(response => setTvTop(response));
+  }, [dataTvTop]);
 
+  useEffect(() => {
     tvCurrent()
       .then(response => setCurrentTv(response));
+  }, [tvCurrent]);
 
+  useEffect(() => {
     dataTvToday()
       .then(response => setTodayTv(response));
-  }, []);
+  }, [dataTvToday]);
 
   return (
     <>

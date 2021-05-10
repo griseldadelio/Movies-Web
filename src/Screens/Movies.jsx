@@ -13,21 +13,31 @@ const Movies = () => {
 
   const { dataMovies, dataMovieRandom, dataMovieTop, dataNow, dataUpcoming } = useContext(MovieContext);
 
-  const indexRandom = Math.floor(Math.random() * 20);
-
   useEffect(() => {
     dataMovies()
       .then((response) => setMovie(response))
+  }, [dataMovies]);
+
+  useEffect(() => {
     dataMovieTop()
       .then((response) => setMovieTop(response))
+  }, [dataMovieTop]);
+
+  useEffect(() => {
     dataNow()
       .then((response) => setNowPlaying(response))
+  }, [dataNow]);
+
+  useEffect(() => {
     dataUpcoming()
       .then((response) => setMovieUpcoming(response))
+  }, [dataUpcoming]);
+
+  useEffect(() => {
+    const indexRandom = Math.floor(Math.random() * 20);
     dataMovieRandom()
       .then((response) => setMovieRandom(response[indexRandom]))
-  }, []);
-
+  }, [dataMovieRandom]);
 
   return (
     <>

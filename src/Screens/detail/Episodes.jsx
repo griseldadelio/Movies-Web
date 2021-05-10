@@ -12,23 +12,22 @@ const Episodes = ({ seasons }) => {
   const [seasonNumber, setSeasonNumber] = useState(1);
   const history = useHistory();
 
-  const dataJson = async () => {
-    const { data } = await api.get(`/tv/${TVId}/season/${seasonNumber}?`, {
-      params: {
-        TVId,
-        seasonNumber
-      }
-    });
-    return data.episodes
-  }
-
   useEffect(() => {
+    const dataJson = async () => {
+      const { data } = await api.get(`/tv/${TVId}/season/${seasonNumber}?`, {
+        params: {
+          TVId,
+          seasonNumber
+        }
+      });
+      return data.episodes
+    }
     dataJson()
       .then(response => {
         setEpisodes(response)
         setEpisodesLength(response.length)
       });
-  }, []);
+  }, [TVId, seasonNumber]);
 
 
   const handleChange = (event) => {
