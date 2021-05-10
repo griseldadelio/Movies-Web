@@ -1,6 +1,6 @@
 import React from 'react';
 import { imageBaseUrl } from '../../utils/ImageBaseUrl';
-import '../style.css'
+import './detail.css'
 
 const Overview = ({ data, mediatype }) => {
   const formatter = new Intl.NumberFormat("en-US", {

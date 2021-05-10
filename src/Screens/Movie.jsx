@@ -3,7 +3,7 @@ import { useParams, NavLink, useRouteMatch, Switch, Route } from 'react-router-d
 
 import { api } from '../utils';
 import { Intro } from '../components';
-import { CategorySimilar, Overview, Cast } from '../Screens';
+import { CategorySimilar, Overview, Cast } from '.';
 
 import './style.css'
 
@@ -46,11 +46,11 @@ const Movie = () => {
 
   useEffect(() => {
     dataJsonMovieId()
-      .then(response => setMovieID(response.data));
-    dataJsonMovieId()
-      .then(response => setVoteAverage(response.data.vote_average));
-    dataJsonMovieId()
-      .then(response => setYear(response.data.release_date.split("-")[0]));
+      .then(response => {
+        setMovieID(response.data)
+        setVoteAverage(response.data.vote_average)
+        setYear(response.data.release_date)
+      })
 
     jsonSimilarMovies()
       .then(response => setSimilarMovies(response.data.results));
@@ -65,14 +65,14 @@ const Movie = () => {
         <Intro data={movieID} year={year} voteAverage={voteAverage} mediatype="movie" />
         <div className={`nav-container`}>
           <nav className={`nav-tvShow `}>
-            <NavLink className='navlink' to={`${url}/info`} activeClassName="selected" >
+            <NavLink className={'navlink'} to={`${url}/info`} activeClassName="selected" >
               OVERVIEW
             </NavLink>
-            <NavLink className='navlink' to={`${url}/cast`} activeClassName="selected" >
+            <NavLink className={'navlink'} to={`${url}/cast`} activeClassName="selected" >
               CAST
             </NavLink>
             {similarMovies.length > 0 && (
-              <NavLink className='navlink' to={`${url}/similar`} activeClassName="selected" >
+              <NavLink className={'navlink'} to={`${url}/similar`} activeClassName="selected" >
                 SIMILAR
               </NavLink>
             )}

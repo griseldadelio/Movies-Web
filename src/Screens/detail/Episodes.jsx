@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { api } from '../../utils';
 import { CardEpisodes } from './CardEpisodes';
 
-import TvShowContext from '../../contexts/TvShow/TvShowContext';
+import './detail.css'
 
 const Episodes = ({ seasons }) => {
   const { TVId } = useParams();
   const [episodes, setEpisodes] = useState();
   const [episodesLength, setEpisodesLength] = useState(0);
-  const { seasonNumber, setSeasonNumber } = useContext(TvShowContext);
+  const [seasonNumber, setSeasonNumber] = useState(1);
   const history = useHistory();
 
   const dataJson = async () => {
@@ -24,9 +24,10 @@ const Episodes = ({ seasons }) => {
 
   useEffect(() => {
     dataJson()
-      .then(response => setEpisodes(response));
-    dataJson()
-      .then(response => setEpisodesLength(response.length));
+      .then(response => {
+        setEpisodes(response)
+        setEpisodesLength(response.length)
+      });
   }, []);
 
 
@@ -38,8 +39,8 @@ const Episodes = ({ seasons }) => {
 
   return (
     seasons && TVId && (
-      <div>
-        <div>
+      <div className={'episodes-main-container'}>
+        <div className={'m-5 text-center'}>
           <select onChange={handleChange} >
             {seasons && seasons
               .filter((season) => season.name !== 'Specials')
@@ -49,20 +50,20 @@ const Episodes = ({ seasons }) => {
                 </option>
               ))}
           </select>
-          <span className={`episodes-length `}>
+          <span className={`px-3`}>
             {episodesLength} Episodes
           </span>
         </div>
 
-        <div>
+        <div className={'cards-episodes-container'}>
           {seasons && episodes && episodes.map((episode) => (
             <CardEpisodes
               key={episode.id}
               src={episode.still_path}
               episode={episode.episode_number}
               title={episode.name}
-              overview={episode.overview}
               date={episode.air_date}
+              overview={episode.overview}
             >
             </CardEpisodes>
           ))}

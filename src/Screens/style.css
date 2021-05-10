@@ -1,3 +1,59 @@
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: "Karla", Verdana, Tahoma, sans-serif !important;
+    color: #fafafa !important;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: none;
+    background-color: #1b262c !important;
+}
+
+.main-aside-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.main-container {
+    margin-left: 100px;
+    width: calc(100vw - 100px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+@media (max-width: 960px){
+    .main-container {
+        width: 100vw;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        top: 360px;
+        min-height: calc(100vh - 260px);
+        height: 100%;
+    }
+}
+
+.nav-container {
+    transition: 0.3s ease-in;
+    width: calc(100% - 100px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in;
+}
+
 .nav-tvShow {
     display: flex;
     flex-direction: row;
@@ -11,32 +67,10 @@
 }
 
 @media (max-width: 960px){
-    .nav-container .nav-tvShow {
+ .nav-tvShow {
         width: 100%;
     }
 }
-
-@media (max-width: 960px){
-    .nav-container .nav-tvShow .navlink.selected {
-        border-bottom: 1px solid #e4eddb;
-    }
-}
-
-
-
-
-.navlink.selected {
-    color: #e4eddb;
-    border-bottom: 2px solid #e4eddb;
-}
-@media (max-width: 960px){
-    .nav-container .nav-tvShow .navlink {
-        font-size: 15px;
-        margin: 5px;
-        padding-bottom: 2px;
-    }
-}
-
 
 
 .navlink {
@@ -49,6 +83,133 @@
     transition: 0.3s ease-in;
 }
 
+.navlink.selected {
+    color: #e4eddb;
+    border-bottom: 2px solid #e4eddb;
+}
+
+@media (max-width: 960px){
+.navlink {
+    font-size: 15px;
+    margin: 5px;
+    padding-bottom: 2px;
+    }
+}
+
+@media (max-width: 960px){
+ .navlink.selected {
+    border-bottom: 1px solid #e4eddb;
+    }
+}
+
+.main-trailer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.player-container {
+    width: 70%;
+    height: 70%;
+}
+
+@media (max-width: 960px){
+ .player-container {
+        width: 95%;
+        height: 80%;
+    }
+}
+
+
+@media (max-width: 1260px){
+ .player-container {
+        width: 90%;
+        height: 40%;
+    }
+}
+
+
+.cards-results-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+
+
+@media (max-width: 960px){
+     .main-error-container {
+        width: 100vw;
+        justify-content: center;
+        height: calc(100vh - 250px);
+        margin: 0px 0 0 0;
+    }
+}
+
+
+@media (max-width: 1260px){
+     .main-error-container {
+        justify-content: center;
+        height: calc(100vh - 200px);
+        margin-left: 100px;
+    }
+}
+
+.main-error-container {
+    margin-left: 100px;
+    width: calc(100vw - 100px);
+    height: 700px;
+    transform: 0.3s ease-in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+    
+.results-container {
+    margin-top: 200px;
+    margin-left: 100px;
+    transition: 0.3s ease-in;
+    width: calc(100vw - 100px);
+    position: relative;
+    min-height: calc(100vh - 400px);
+    height: 100%;
+    background-color: #1b262c;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  
+    flex-wrap: wrap;
+    transition: 0.3s ease-in;
+}
+
+ .cards-results-container {
+    padding-right: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+   
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 960px){
     .overview-main-container {
@@ -56,15 +217,7 @@
     }
 }
 
-.nav-container {
-    transition: 0.3s ease-in;
-    width: calc(100% - 100px);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s ease-in;
-}
+
 .overview-main-container {
     width: calc(100vw - 100px);
     overflow: hidden;

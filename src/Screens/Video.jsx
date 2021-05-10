@@ -5,6 +5,7 @@ import { api } from '../utils';
 
 import { GoBackButton } from '../components';
 import img from '../assets/img/error-video.jpeg';
+import './style.css'
 
 const Video = () => {
   const [url, setUrl] = useState([]);
@@ -22,8 +23,7 @@ const Video = () => {
         id
       })
 
-      const dataJson = await response.json();
-      const getKey = await dataJson.results.filter((i) => i.type === 'Trailer');
+      const getKey = await response.data.results.filter((i) => i.type === 'Trailer');
 
       setUrl(getKey);
       setIsError(getKey.length === 0);
@@ -36,19 +36,19 @@ const Video = () => {
     <>
       <GoBackButton />
       {!isLoading && isError && (
-        <div className={`container`}>
-          <img src={img} alt='error' />
-          <h1 id='error-trailer-heading'>
+        <div className={'main-error-container'} >
+          <img className={'mb-4'} src={img} alt='error' />
+          <h3>
             ...Ups, this {media === 'movie' ? media : 'TV show'} doesn't have a
             trailer.
-          </h1>
+          </h3>
         </div>
       )}
       {!isLoading && !isError && (
-        <div>
-          <h3>Trailer</h3>
-          <div >
-            <ReactPlayer url={`https://www.youtube.com/watch?v=${url[0].key}`} width='100%' height='100%' controls onReady volume='0.5' />
+        <div className={`main-trailer-container`}>
+          <h2 className={'mb-5'} ><b>Trailer</b></h2>
+          <div className={'player-container'}>
+            <ReactPlayer url={`https://www.youtube.com/watch?v=${url[0].key}`} width='100%' height='500px' controls onReady volume='0.5' />
           </div>
         </div>
       )}

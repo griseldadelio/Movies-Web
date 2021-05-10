@@ -1,19 +1,50 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { CardListPreview, Intro } from '../components';
 
 import TvShowContext from '../contexts/TvShow/TvShowContext';
+import './style.css'
 
 const Series = () => {
-  const { todayTv, currentTv, tvTop, tvShowRandom, tvShow, voteAverage, year } = useContext(TvShowContext);
+  const [tvShow, setTvShow] = useState([]);
+  const [tvShowRandom, setTvShowRandom] = useState([]);
+  const [tvTop, setTvTop] = useState([]);
+  const [year, setYear] = useState(0);
+  const [voteAverage, setVoteAverage] = useState(0);
+  const [currentTv, setCurrentTv] = useState([]);
+  const [todayTv, setTodayTv] = useState([]);
+
+  const { dataTVShows, dataTVRandom, dataTvTop, tvCurrent, dataTvToday } = useContext(TvShowContext);
+  const indexRandom = Math.floor(Math.random() * 20);
+
+  useEffect(() => {
+    dataTVShows()
+      .then(response => setTvShow(response))
+
+    dataTVRandom()
+      .then(response => {
+        setTvShowRandom(response[indexRandom])
+        setYear(response[indexRandom].first_air_date.split("-")[0])
+        setVoteAverage(response[indexRandom].vote_average)
+      })
+
+    dataTvTop()
+      .then(response => setTvTop(response));
+
+    tvCurrent()
+      .then(response => setCurrentTv(response));
+
+    dataTvToday()
+      .then(response => setTodayTv(response));
+  }, []);
 
   return (
     <>
       <div className={`main-container`}>
         <Intro data={tvShowRandom} year={year} voteAverage={voteAverage} mediatype="tv" />
-        <CardListPreview mediatype='tv' data={tvShow} sectionTitle='Popular TV Shows' category='popular' isFavs={false} />
-        <CardListPreview mediatype='tv' data={tvTop} sectionTitle='Top Rated TV Shows' category='top_rated' isFavs={false} />
-        <CardListPreview mediatype='tv' data={currentTv} sectionTitle='Currently Airing TV Shows' category='on_the_air' isFavs={false} />
-        <CardListPreview mediatype='tv' data={todayTv} sectionTitle='TV Shows Airing Today' category='airing_today' isFavs={false} />
+        <CardListPreview mediatype='tv' data={tvShow} sectionTitle='Popular TV Shows' category='popular' />
+        <CardListPreview mediatype='tv' data={tvTop} sectionTitle='Top Rated TV Shows' category='top_rated' />
+        <CardListPreview mediatype='tv' data={currentTv} sectionTitle='Currently Airing TV Shows' category='on_the_air' />
+        <CardListPreview mediatype='tv' data={todayTv} sectionTitle='TV Shows Airing Today' category='airing_today' />
       </div>
     </>
   );

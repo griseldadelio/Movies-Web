@@ -43,20 +43,17 @@ const Shows = () => {
         TVId
       }
     });
-    console.log(data)
     return data.cast
   }
 
   useEffect(() => {
     dataJsonTVID()
-      .then(response => setTvShowID(response));
-    dataJsonTVID()
-      .then(response => setVoteAverage(response.vote_average));
-    dataJsonTVID()
-      .then(response => setYear(response.release_date));
-    dataJsonTVID()
-      .then((response) =>
-        setSeasons(response.seasons));
+      .then(response => {
+        setTvShowID(response)
+        setVoteAverage(response.vote_average)
+        setYear(response.release_date)
+        setSeasons(response.seasons)
+      });
   }, []);
 
   useEffect(() => {
@@ -80,18 +77,18 @@ const Shows = () => {
         <div className={`nav-container`}>
           {' '}
           <nav className={`nav-tvShow `}>
-            <NavLink className='navlink' to={`${url}/info`} activeClassName='selected' >
+            <NavLink className={'navlink'} to={`${url}/info`} activeClassName='selected' >
               OVERVIEW
             </NavLink>
-            <NavLink className='navlink' to={`${url}/season/${seasonNumber}`} activeClassName='selected' >
+            <NavLink className={'navlink'} to={`${url}/season/${seasonNumber}`} activeClassName='selected' >
               EPISODES
             </NavLink>
             {similarShows.length > 0 && (
-              <NavLink className='navlink' to={`${url}/similar`} activeClassName='selected'>
+              <NavLink className={'navlink'} to={`${url}/similar`} activeClassName='selected'>
                 SIMILAR
               </NavLink>
             )}
-            <NavLink className='navlink' to={`${url}/cast`} activeClassName='selected' >
+            <NavLink className={'navlink'} to={`${url}/cast`} activeClassName='selected' >
               CAST
             </NavLink>
           </nav>
