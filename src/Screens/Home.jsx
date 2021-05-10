@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { CardListPreview, Intro } from "../components";
 
 import DataContext from "../contexts/Data/DataContext";
@@ -7,9 +7,38 @@ import TvShowContext from "../contexts/TvShow/TvShowContext";
 import './style.css'
 
 const Home = () => {
-  const { data, year, voteAverage, mediatype } = useContext(DataContext);
-  const { movie } = useContext(MovieContext);
-  const { tvShow } = useContext(TvShowContext);
+  const [tvShow, setTvShow] = useState([]);
+  const [movie, setMovie] = useState([]);
+  const [data, setData] = useState([]);
+  const [year, setYear] = useState();
+  const [voteAverage, setVoteAverage] = useState(0);
+  const [mediatype, setMediatype] = useState('');
+
+  const { dataJson } = useContext(DataContext);
+  const { dataMovies } = useContext(MovieContext);
+  const { dataTVShows } = useContext(TvShowContext);
+
+  const indexRandom = Math.floor(Math.random() * 20);
+
+  useEffect(() => {
+    dataTVShows()
+      .then(response => setTvShow(response))
+  }, [dataTVShows]);
+
+  useEffect(() => {
+    dataMovies()
+      .then((response) => setMovie(response))
+  }, [dataMovies]);
+
+  useEffect(() => {
+    dataJson()
+      .then(response => {
+        setData(response[indexRandom])
+        setVoteAverage(response[indexRandom].vote_average)
+        setMediatype(response[indexRandom].media_type)
+        setYear(response[indexRandom].release_date)
+      })
+  }, []);
 
   return (
     <>

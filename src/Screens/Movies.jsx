@@ -1,11 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { CardListPreview, Intro } from '../components';
 import MovieContext from '../contexts/Movie/MovieContext';
 import './style.css'
 
 const Movies = () => {
-  const { movieRandom, movieTop, movieUpcoming, nowPlaying, movie } = useContext(MovieContext);
+  const [movie, setMovie] = useState([]);
+  const [movieRandom, setMovieRandom] = useState([]);
+  const [movieTop, setMovieTop] = useState([]);
+  const [movieUpcoming, setMovieUpcoming] = useState([]);
+  const [nowPlaying, setNowPlaying] = useState([]);
+
+  const { dataMovies, dataMovieRandom, dataMovieTop, dataNow, dataUpcoming } = useContext(MovieContext);
+
+  const indexRandom = Math.floor(Math.random() * 20);
+
+  useEffect(() => {
+    dataMovies()
+      .then((response) => setMovie(response))
+    dataMovieTop()
+      .then((response) => setMovieTop(response))
+    dataNow()
+      .then((response) => setNowPlaying(response))
+    dataUpcoming()
+      .then((response) => setMovieUpcoming(response))
+    dataMovieRandom()
+      .then((response) => setMovieRandom(response[indexRandom]))
+  }, []);
+
 
   return (
     <>

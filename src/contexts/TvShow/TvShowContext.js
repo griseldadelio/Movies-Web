@@ -1,19 +1,9 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext } from 'react';
 import { api } from '../../utils';
 
 const TvShowContext = createContext();
 
 const TvShowProvider = ({ children }) => {
-  const [tvShow, setTvShow] = useState([]);
-  const [tvShowRandom, setTvShowRandom] = useState([]);
-  const [tvTop, setTvTop] = useState([]);
-  const [year, setYear] = useState(0);
-  const [voteAverage, setVoteAverage] = useState(0);
-  const [currentTv, setCurrentTv] = useState([]);
-  const [todayTv, setTodayTv] = useState([]);
-  const [isLoadingTvShow, setIsLoadingTvShow] = useState(true);
-  const [seasonNumber, setSeasonNumber] = useState(1);
-
   const dataTVShows = async () => {
     const { data } = await api.get(`/tv/popular`);
     return data.results
@@ -47,35 +37,9 @@ const TvShowProvider = ({ children }) => {
     return data.results
   }
 
-  const indexRandom = Math.floor(Math.random() * 20);
-
-  useEffect(() => {
-    setIsLoadingTvShow(true);
-    dataTVShows()
-      .then(response => setTvShow(response))
-
-    dataTVRandom()
-      .then(response => {
-        setTvShowRandom(response[indexRandom])
-        setYear(response[indexRandom].first_air_date.split("-")[0])
-        setVoteAverage(response[indexRandom].vote_average)
-      })
-
-    dataTvTop()
-      .then(response => setTvTop(response));
-
-    tvCurrent()
-      .then(response => setCurrentTv(response));
-
-    dataTvToday()
-      .then(response => setTodayTv(response));
-    setIsLoadingTvShow(false);
-  }, []);
-
-
   return (
     <TvShowContext.Provider
-      value={{ todayTv, currentTv, tvTop, tvShow, tvShowRandom, year, voteAverage, isLoadingTvShow, seasonNumber, setSeasonNumber }}>
+      value={{ dataTVShows, dataTVRandom, dataTvToday, dataTvTop, tvCurrent }}>
       {children}
     </TvShowContext.Provider>
   );

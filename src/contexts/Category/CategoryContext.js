@@ -1,8 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { API_KEY } from '../../utils/API_KEY';
 import { useFetch } from '../../hooks/useFetch';
-import { api } from '../../utils/api';
-
 
 const CategoryContext = createContext();
 
@@ -25,20 +23,6 @@ const CategoryProvider = ({ children }) => {
     dataCategory && setMaxPage(dataCategory.total_pages);
     dataCategory && setIsLoading(false);
   }, [dataCategory]);
-
-  // const dataCategory = async () => {
-  //   const { data } = await api.get(`/${media}/${category}`, {
-  //     params: {
-  //       media,
-  //       category,
-  //       page
-  //     }
-  //   });
-  //   console.log(data)
-  //   return data.results
-  // }
-
-
 
   return (
     <CategoryContext.Provider value={{ maxPage, page, setMedia, setCategory, setPage, dataByParams, isLoading }} >

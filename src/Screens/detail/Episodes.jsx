@@ -1,16 +1,15 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { api } from '../../utils';
 import { CardEpisodes } from './CardEpisodes';
 
-import TvShowContext from '../../contexts/TvShow/TvShowContext';
 import './detail.css'
 
 const Episodes = ({ seasons }) => {
   const { TVId } = useParams();
   const [episodes, setEpisodes] = useState();
   const [episodesLength, setEpisodesLength] = useState(0);
-  const { seasonNumber, setSeasonNumber } = useContext(TvShowContext);
+  const [seasonNumber, setSeasonNumber] = useState(1);
   const history = useHistory();
 
   const dataJson = async () => {
@@ -25,9 +24,10 @@ const Episodes = ({ seasons }) => {
 
   useEffect(() => {
     dataJson()
-      .then(response => setEpisodes(response));
-    dataJson()
-      .then(response => setEpisodesLength(response.length));
+      .then(response => {
+        setEpisodes(response)
+        setEpisodesLength(response.length)
+      });
   }, []);
 
 

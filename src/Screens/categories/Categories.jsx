@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import * as Icon from 'react-bootstrap-icons';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { DotLoader } from "react-spinners";
 
@@ -13,6 +13,7 @@ const Categories = () => {
   const { media, category } = useParams();
   const { setPage, maxPage, dataByParams, setMedia, setCategory, isLoading } = useContext(CategoryContext);
   const title2 = category.split("_").join(" ");
+  const history = useHistory();
 
   useEffect(() => {
     setMedia(media);
@@ -36,7 +37,8 @@ const Categories = () => {
             <div className={'main-category-container'}>
               {dataByParams.map((singleCard) =>
                 media === "movie" && singleCard.name ? (
-                  <div className={'main-category-container'} key={singleCard.id}></div>
+                  <div className={'main-category-container'} key={singleCard.id}>
+                  </div>
                 ) : (
                     <Card key={singleCard.id}
                       cardInfo={{
@@ -63,6 +65,7 @@ const Categories = () => {
                 pageRangeDisplayed={3}
                 onPageChange={(actualPage) => {
                   setPage(actualPage.selected + 1)
+                  history.push(`?page=${actualPage.selected + 1}`)
                 }}
                 containerClassName={'pagination'}
                 activeClassName={'active'}

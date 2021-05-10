@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import './nav.css';
 import { LogoNav } from '.';
-import SearchContext from '../../../contexts/Search/SearchContext';
 
 const NavBar = () => {
-  const { handleSearchBarVisible } = useContext(SearchContext);
   const [noShow, setNoShow] = useState(true);
 
   const handleToggle = (event) => {
@@ -45,19 +43,10 @@ const NavBar = () => {
             <Icon.TvFill className={`nav-icon `} title={'Tv Series'} onClick={handleToggle} aria-hidden='true' />
             <p className={`nav-text `}>TV Shows</p>
           </NavLink>
-          <div className={'container'}
-            onClick={(event) => {
-              handleSearchBarVisible(event);
-              handleToggle(event);
-            }}
-            onKeyDown={(event) => {
-              handleSearchBarVisible(event);
-              handleToggle(event);
-            }}
-          >
+          <NavLink to='/search' exact className={'container'} activeClassName='selected'>
             <Icon.Search className={`nav-icon`} title={'Search'} aria-hidden='true' />
             <p className={`nav-text `}>Search</p>
-          </div>
+          </NavLink>
         </div>
       </nav>
     </>
