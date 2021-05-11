@@ -1,19 +1,20 @@
 import React, { useEffect, useContext } from 'react';
 import * as Icon from 'react-bootstrap-icons';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { DotLoader } from "react-spinners";
 
 import { Card, GoBackButton } from '../../components';
 import CategoryContext from '../../contexts/Category/CategoryContext';
-import './catego.css'
+import './categorie.css'
 
 
 const Categories = () => {
   const { media, category } = useParams();
   const { setPage, maxPage, dataByParams, setMedia, setCategory, isLoading } = useContext(CategoryContext);
   const title2 = category.split("_").join(" ");
-  const history = useHistory();
+
+  const params = new URLSearchParams();
 
   useEffect(() => {
     setMedia(media);
@@ -36,22 +37,17 @@ const Categories = () => {
             </h2>
             <div className={'main-category-container'}>
               {dataByParams.map((singleCard) =>
-                media === "movie" && singleCard.name ? (
-                  <div className={'main-category-container'} key={singleCard.id}>
-                  </div>
-                ) : (
-                    <Card key={singleCard.id}
-                      cardInfo={{
-                        id: singleCard.id,
-                        src: singleCard.poster_path,
-                        title:
-                          media === "movie" ? singleCard.title : singleCard.name,
-                        votes: singleCard.vote_average,
-                        key: singleCard.id,
-                        mediatype: media,
-                      }}
-                    />
-                  )
+                <Card key={singleCard.id}
+                  cardInfo={{
+                    id: singleCard.id,
+                    src: singleCard.poster_path,
+                    title:
+                      media === "movie" ? singleCard.title : singleCard.name,
+                    votes: singleCard.vote_average,
+                    key: singleCard.id,
+                    mediatype: media,
+                  }}
+                />
               )}
             </div>
             <div className={'container mt-4'}>
@@ -65,7 +61,8 @@ const Categories = () => {
                 pageRangeDisplayed={3}
                 onPageChange={(actualPage) => {
                   setPage(actualPage.selected + 1)
-                  history.push(`?page=${actualPage.selected + 1}`)
+                  params.set('page', `${actualPage.selected + 1}`);
+                  window.history.replaceState({}, '', `${window.location.pathname}?${params}`)
                 }}
                 containerClassName={'pagination'}
                 activeClassName={'active'}

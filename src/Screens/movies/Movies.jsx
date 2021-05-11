@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { CardListPreview, Intro } from '../components';
-import MovieContext from '../contexts/Movie/MovieContext';
-import './style.css'
+import { CardListPreview, Intro } from '../../components';
+import MovieContext from '../../contexts/Movie/MovieContext';
 
 const Movies = () => {
   const [movie, setMovie] = useState([]);

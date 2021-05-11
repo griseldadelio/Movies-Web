@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Route, Switch, NavLink, useRouteMatch } from 'react-router-dom';
-import { api } from '../utils';
+import { api } from '../../utils';
 
-import { Intro } from '../components';
-import { CategorySimilar, Overview, Episodes, Cast } from '.';
+import { Intro } from '../../components';
+import { CategorySimilar, Overview, Episodes, Cast } from '..';
 
-import TvShowContext from '../contexts/TvShow/TvShowContext';
-import './style.css'
+import TvShowContext from '../../contexts/TvShow/TvShowContext';
 
 const Shows = () => {
   const [tvShowID, setTvShowID] = useState([]);
@@ -76,7 +75,7 @@ const Shows = () => {
         <Intro data={tvShowID} year={year} voteAverage={voteAverage} mediatype='tv' />
         <div className={`nav-container`}>
           {' '}
-          <nav className={`nav-tvShow `}>
+          <nav className={`nav-media`}>
             <NavLink className={'navlink'} to={`${url}/info`} activeClassName='selected' >
               OVERVIEW
             </NavLink>

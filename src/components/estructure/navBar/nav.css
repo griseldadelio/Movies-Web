@@ -108,7 +108,11 @@ a {
     padding: 5px;
 }
 
-.container.selected .nav-text  {
+.container.selected .nav-text {
+    color:#2196F8c2;
+}
+
+.container.selected .nav-icon {
     color:#2196F8c2;
 }
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import { api } from '../utils';
+import { api } from '../../utils';
 
-import { GoBackButton } from '../components';
-import img from '../assets/img/error-video.jpeg';
-import './style.css'
+import { GoBackButton } from '../../components';
+import img from '../../assets/img/error-video.jpeg';
+import './video.css'
 
 const Video = () => {
   const [url, setUrl] = useState([]);

@@ -1,8 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { CardListPreview, Intro } from '../components';
+import { CardListPreview, Intro } from '../../components';
 
-import TvShowContext from '../contexts/TvShow/TvShowContext';
-import './style.css'
+import TvShowContext from '../../contexts/TvShow/TvShowContext';
 
 const Series = () => {
   const [tvShow, setTvShow] = useState([]);

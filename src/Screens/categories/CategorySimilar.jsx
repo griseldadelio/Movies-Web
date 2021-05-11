@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from '../../components';
-import '../style.css'
-import './catego.css'
+import './categorie.css'
 
 const CategorySimilar = ({ data, mediatype }) => {
 
