@@ -1,10 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { CardListPreview, Intro } from "../components";
+import { CardListPreview, Intro } from "../../components";
 
-import DataContext from "../contexts/Data/DataContext";
-import MovieContext from "../contexts/Movie/MovieContext";
-import TvShowContext from "../contexts/TvShow/TvShowContext";
-import './style.css'
+import DataContext from "../../contexts/Data/DataContext";
+import MovieContext from "../../contexts/Movie/MovieContext";
+import TvShowContext from "../../contexts/TvShow/TvShowContext";
 
 const Home = () => {
   const [tvShow, setTvShow] = useState([]);

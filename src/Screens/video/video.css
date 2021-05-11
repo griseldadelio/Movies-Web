@@ -1,0 +1,55 @@
+.main-error-container {
+    margin-left: 100px;
+    width: calc(100vw - 100px);
+    height: 700px;
+    transform: 0.3s ease-in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 960px){
+    .main-error-container {
+       width: 100vw;
+       justify-content: center;
+       height: calc(100vh - 250px);
+       margin: 0px 0 0 0;
+   }
+}
+
+
+@media (max-width: 1260px){
+    .main-error-container {
+       justify-content: center;
+       height: calc(100vh - 200px);
+       margin-left: 100px;
+   }
+}
+
+.main-trailer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.player-container {
+    width: 70%;
+    height: 70%;
+}
+
+@media (max-width: 960px){
+ .player-container {
+        width: 95%;
+        height: 80%;
+    }
+}
+
+
+@media (max-width: 1260px){
+ .player-container {
+        width: 90%;
+        height: 40%;
+    }
+}

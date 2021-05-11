@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
 
-import { api } from '../utils';
-import { Intro } from '../components';
-import { CategorySimilar, Overview, Cast } from '.';
+import { api } from '../../utils';
+import { Intro } from '../../components';
+import { CategorySimilar, Overview, Cast } from '..';
 
-import './style.css'
 
 const Movie = () => {
   const [movieID, setMovieID] = useState([]);
@@ -67,7 +66,7 @@ const Movie = () => {
       <div className={`main-container`}>
         <Intro data={movieID} year={year} voteAverage={voteAverage} mediatype="movie" />
         <div className={`nav-container`}>
-          <nav className={`nav-tvShow `}>
+          <nav className={`nav-media`}>
             <NavLink className={'navlink'} to={`${url}/info`} activeClassName="selected" >
               OVERVIEW
             </NavLink>

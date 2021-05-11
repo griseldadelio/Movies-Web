@@ -1,3 +1,55 @@
+.overview-main-container {
+    width: calc(100vw - 100px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in;
+    min-height: calc(100vh - 865px);
+}
+
+@media (max-width: 960px){
+    .overview-main-container {
+        width: 100%;
+    }
+}
+
+.info-serie-container {
+    width: 90%;
+    margin: 0 40px 0 64px;
+}
+
+@media (max-width: 1260px){
+    .info-serie-container {
+        width: -moz-fit-content;
+        width: fit-content;
+        margin: 0;
+        padding: 30px;
+    }
+}
+
+.img {
+    width: 250px;
+    height: 200px;
+}
+
+.title-serie p {
+    font-size: 17px;
+}
+
+.list-item{
+    list-style: none;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.card-episode {
+    width: 28%;
+    height: 465px;
+    margin: 16px 3px;
+}
+
 @media (max-width: 960px){
     .card-episode {
         text-align: center;
@@ -11,23 +63,10 @@
         min-width: 250px;
         max-height: 300px;
     }
-    
 }
 
 
- .card-episode {
-    width: 28%;
-    height: 465px;
-    margin: 16px 3px;
-}
-@media (max-width: 960px){
-    .img-episode-container {
-        min-width: 250px;
-        height: 150px;
-    }
-}
-
- .img-episode-container > img {
+.img-episode-container > img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -35,6 +74,13 @@
 
 .img-episode{
     height: 100%;
+}
+
+@media (max-width: 960px){
+    .img-episode-container {
+        min-width: 250px;
+        height: 150px;
+    }
 }
 
 .cards-episodes-container {
@@ -80,6 +126,12 @@
     }
 }
 
+.card-episode-title {
+    display: flex;
+    margin: 15px 0;
+    height: 30px;
+}
+
 @media (max-width: 960px){
    .card-episode-title {
         margin: 5px 0;
@@ -90,19 +142,6 @@
     }
 }
 
- .card-episode-title {
-    display: flex;
-    margin: 15px 0;
-    height: 30px;
-}
-
-@media (max-width: 960px){
-    .episodes-main-container {
-        width: 90%;
-    }
-}
-
-
 .episodes-main-container {
     width: calc(100vw - 100px);
     overflow: hidden;
@@ -112,6 +151,18 @@
     align-items: center;
     position: relative;
     transition: 0.3s ease-in;
+}
+
+@media (max-width: 960px){
+    .episodes-main-container {
+        width: 90%;
+    }
+}
+
+.card-episode {
+    width: 28%;
+    height: 465px;
+    margin: 16px 3px;
 }
 
 @media (max-width: 960px){
@@ -130,20 +181,6 @@
     
 }
 
- .card-episode {
-    width: 28%;
-    height: 465px;
-    margin: 16px 3px;
-}
-
-@media (max-width: 960px){
-    .cast-container {
-        justify-content: space-between;
-        padding: 20px;
-    }
-}
-
-
 
 .cast-container {
     display: flex;
@@ -159,6 +196,17 @@
     align-items: center;
     transition: 0.3s ease-in;
 }
+
+@media (max-width: 960px){
+    .cast-container {
+        justify-content: space-between;
+        padding: 20px;
+    }
+}
+
+
+
+
 
 
 

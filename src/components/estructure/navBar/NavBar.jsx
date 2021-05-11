@@ -31,7 +31,7 @@ const NavBar = () => {
       <nav className={`aside ${noShow && 'set-show-nav'}`}>
         <div className='nav-links'>
           <LogoNav />
-          <NavLink to='/' className={'container'} activeClassName='selected exact' >
+          <NavLink to='/' className={'container'}>
             <Icon.HouseDoorFill className={`nav-icon `} title={"Home"} onClick={handleToggle} aria-hidden='true' />
             <p className={`nav-text`}>Home</p>
           </NavLink>
@@ -44,7 +44,7 @@ const NavBar = () => {
             <p className={`nav-text `}>TV Shows</p>
           </NavLink>
           <NavLink to='/search' exact className={'container'} activeClassName='selected'>
-            <Icon.Search className={`nav-icon`} title={'Search'} aria-hidden='true' />
+            <Icon.Search className={`nav-icon`} title={'Search'} onClick={handleToggle} aria-hidden='true' />
             <p className={`nav-text `}>Search</p>
           </NavLink>
         </div>
