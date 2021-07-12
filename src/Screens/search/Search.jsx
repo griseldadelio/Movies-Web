@@ -17,7 +17,7 @@ export const Search = () => {
         (async () => {
             api.get((`/search/movie?query=${search ?? ' '}`)).then(response => setResults(response.data.results))
         })()
-    }, []);
+    }, [search]);
 
     const handleInputChange = (event) => {
         params.set('s', `${event.target.value}`)
@@ -28,6 +28,7 @@ export const Search = () => {
         // window.history.replaceState({}, '', `${window.location.pathname}?${params}`)
     }
 
+
     return (
         <div className={'main-container'}>
             <Form className={'container mt-5'}>
@@ -35,7 +36,7 @@ export const Search = () => {
                     <Form.Label className={'search-title mt-5'}>
                         <h2><strong>Find your next Movie</strong></h2>
                     </Form.Label>
-                    <Form.Control type='text' placeholder='Search...' name='s' onKeyUp={handleInputChange} />
+                    <Form.Control type='text' placeholder='Search...' name='s' onChange={handleInputChange} />
                 </Form.Group>
             </Form>
             <div className={'main-category-container p-3'}>

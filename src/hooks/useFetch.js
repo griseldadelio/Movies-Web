@@ -12,7 +12,7 @@ const useFetch = (url, DependenciesArray) => {
       })
 
 
-  }, DependenciesArray);
+  });
 
   return data;
 }

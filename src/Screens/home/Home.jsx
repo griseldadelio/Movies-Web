@@ -40,6 +40,7 @@ const Home = () => {
 
   return (
     <>
+
       <div className={`main-container`}>
         <Intro data={data} year={year} voteAverage={voteAverage} mediatype={mediatype} />
         <CardListPreview mediatype="movie" data={movie} sectionTitle="Trending Movies" category="popular" isFavs={false} />
