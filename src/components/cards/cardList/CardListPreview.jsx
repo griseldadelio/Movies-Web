@@ -6,6 +6,7 @@ import { Row } from 'react-bootstrap';
 import { Card } from '../card/Card';
 import './cardListPreview.css'
 
+
 const CardListPreview = ({ mediatype, data, sectionTitle, category, is }) => {
     const flickityOptions = {
         freeScroll: true,
@@ -19,8 +20,8 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, is }) => {
         groupCells: '100%',
         resize: true,
     };
-
-    let flkty = null;
+    // eslint-disable-next-line
+    let flkty = null; //eslint-disable-line no-unused-vars
 
     return (
         data && (
@@ -33,7 +34,7 @@ const CardListPreview = ({ mediatype, data, sectionTitle, category, is }) => {
                         Explore All
                     </Link>
                 </Row>
-                <Flickity options={flickityOptions} flickityRef={(ref) => (flkty = ref)}>
+                <Flickity options={flickityOptions} flickityRef={(c) => (flkty = c)}>
                     {data && data.map((singleCard) => (
                         <Card key={singleCard.id}
                             cardInfo={{
